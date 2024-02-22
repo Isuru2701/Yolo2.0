@@ -40,7 +40,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <div style={{ display: 'flex', flexDirection: 'row-reverse' }}>
-
+      <div style={{ zIndex: 90,  display: 'flex', flexDirection: 'row-reverse' }}>
+        <Header />
+      </div>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />} />
@@ -75,9 +77,7 @@ root.render(
 
 
       </BrowserRouter>
-      <div style={{ zIndex: 90 }}>
-        <Header />
-      </div>
+
     </div>
 
 

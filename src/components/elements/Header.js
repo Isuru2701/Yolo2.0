@@ -20,30 +20,28 @@ export default function Header() {
     }
 
     return (
-        <div className={`header-container ${collapsed ? 'collapsed' : ''}`}>
-            <div className="sidebar">
-                <Sidebar style={{ height: "100vh" }} collapsed={collapsed} rtl={true} backgroundColor='#2e2e2e'>
-                    <Menu>
-                        <MenuItem
-                            icon={<MenuOutlinedIcon />}
-                            onClick={() => {
-                                toggleSidebar();
-                            }}
-                            style={{ textAlign: "center" }}
-                        >
-                            {" "}
-                            <h2>Admin</h2>
-                        </MenuItem>
+        <div className='header-container'>
+            <Sidebar style={{ height: "100vh" }} collapsed={collapsed} rtl={true} backgroundColor='#2e2e2e'>
+                <Menu>
+                    <MenuItem
+                        icon={<MenuOutlinedIcon />}
+                        onClick={() => {
+                            toggleSidebar();
+                        }}
+                        style={{ textAlign: "center" }}
+                    >
+                        {" "}
+                        <h2>Admin</h2>
+                    </MenuItem>
 
-                        <MenuItem icon={<HomeOutlinedIcon />}>Home</MenuItem>
-                        <MenuItem icon={<PeopleOutlinedIcon />}>Team</MenuItem>
-                        <MenuItem icon={<ContactsOutlinedIcon />}>Contacts</MenuItem>
-                        <MenuItem icon={<ReceiptOutlinedIcon />}>Profile</MenuItem>
-                        <MenuItem icon={<HelpOutlineOutlinedIcon />}>FAQ</MenuItem>
-                        <MenuItem icon={<CalendarTodayOutlinedIcon />}>Calendar</MenuItem>
-                    </Menu>
-                </Sidebar>
-            </div>
+                    <MenuItem icon={<HomeOutlinedIcon />}>Home</MenuItem>
+                    <MenuItem icon={<PeopleOutlinedIcon />}>Team</MenuItem>
+                    <MenuItem icon={<ContactsOutlinedIcon />}>Contacts</MenuItem>
+                    <MenuItem icon={<ReceiptOutlinedIcon />}>Profile</MenuItem>
+                    <MenuItem icon={<HelpOutlineOutlinedIcon />}>FAQ</MenuItem>
+                    <MenuItem icon={<CalendarTodayOutlinedIcon />}>Calendar</MenuItem>
+                </Menu>
+            </Sidebar>
         </div>
     );
 }
