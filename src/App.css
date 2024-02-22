@@ -3,26 +3,40 @@
   width: 100%;
   height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items:first baseline;
-}
-
-.landing-title-wrapper {
-  display: inline-block;
-  background: linear-gradient(45deg, var(--sharp-pink), var(--sharp-blue));
-  border-radius: 100px;
-  padding: 10px; /* Adjust based on your desired border width */
-  width: 90%;
-  height: 50vh;
+  justify-content: left;
+  align-items: center;
 }
 
 .landing-title {
-  display: inline-block;
-  background: transparent;
+  float: left;
+  display: flex;
+  align-items: flex-start;
+  margin-left: 100px;
+}
+
+.landing-title h1 {
+  font-size: 100px;
+  font-weight: 700; 
+  overflow: hidden; /* Ensures the content is only shown within the .landing-title */
+  border-right: .15em solid var(--tone-highlight);  /* The typwriter cursor */
+  white-space: nowrap;  /* Keeps the content on a single line */
+  margin: 0 auto;  /* Gives it a width */
+  letter-spacing: .15em;  /* Adjust as needed */
+  color: var(--sharp-accent);
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
   
-  border-radius: 100px;
-  width: 90%;
-  height: 50vh;
-  background-color: var(--base-black);
-  /* Other styles... */
+}
+
+/* The typing animation */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--tone-highlight); }
 }
