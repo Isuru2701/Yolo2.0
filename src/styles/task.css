@@ -1,0 +1,10 @@
+.task-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--light-blue);
+    color: var(--highlight-white);
+    border: 0px none;
+    border-radius: 10px;
+
+}
