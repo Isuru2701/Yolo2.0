@@ -39,41 +39,48 @@ import Header from './components/elements/Header';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Header />
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
+    <div style={{ display: 'flex', flexDirection: 'row-reverse' }}>
 
-        <Route path='/developers' element={<DevDashboard />} />
-        <Route path='/developers/docs' element={<Docs />} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />} />
 
-        <Route path='/creators' element={<CCDashboard />} />
-        <Route path='/creators/boost' element={<Boost />} />
+          <Route path='/developers' element={<DevDashboard />} />
+          <Route path='/developers/docs' element={<Docs />} />
 
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/preferences' element={<Preferences />} />
-        <Route path='/collection' element={<Collection />}/>
+          <Route path='/creators' element={<CCDashboard />} />
+          <Route path='/creators/boost' element={<Boost />} />
 
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/forgot' element={<ForgotPassword />} />
-        <Route path='/reset' element={<ResetPassword />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/preferences' element={<Preferences />} />
+          <Route path='/collection' element={<Collection />} />
 
-        <Route path='/checkout' element={<Checkout />} />
-        <Route path='/cancel' element={<Cancel />} />
-        <Route path='/success' element={<Success />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/forgot' element={<ForgotPassword />} />
+          <Route path='/reset' element={<ResetPassword />} />
 
-        <Route path='/admin' element={<AdminLogin />} />
-        <Route path='/admin/collections' element={<ManageCollections />} />
-        <Route path='/admin/requests' element={<ApproveRequests />} />
+          <Route path='/checkout' element={<Checkout />} />
+          <Route path='/cancel' element={<Cancel />} />
+          <Route path='/success' element={<Success />} />
 
-
-
-      </Routes>
+          <Route path='/admin' element={<AdminLogin />} />
+          <Route path='/admin/collections' element={<ManageCollections />} />
+          <Route path='/admin/requests' element={<ApproveRequests />} />
 
 
 
-    </BrowserRouter>
+        </Routes>
+
+
+
+      </BrowserRouter>
+      <div style={{ zIndex: 90 }}>
+        <Header />
+      </div>
+    </div>
+
+
   </React.StrictMode>
 );
 

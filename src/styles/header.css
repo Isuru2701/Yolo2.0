@@ -1,50 +1,15 @@
-.header-container{
-      z-index: 10;
-}
-.navbar {
-  position: fixed;
-  width: 100%;
+.header-container {
   display: flex;
+  flex-direction: row-reverse;
+  height: 100vh;
   background-color: var(--base-grey);
-  color: var(--light-blue);
-  z-index: 10;
+  color: var(--tone-highlight);
+  z-index: 90;
+  position: absolute;
 }
 
-.main-content {
-  justify-content: center;
-  justify-self: center;
-}
 
-.navbar h1 {
-  margin: 10px;
-  color: var(--highlight-white);
-  font-weight: 500;
-  font-family: "Inter", sans-serif;
-}
-
-.navbar .normal-button {
-  background-color: var(--light-blue);
-  color: var(--highlight-white);
-  border: 0 transparent;
-  border-radius: 15px;
-  padding: 10px;
-  margin: 7px;
-  font-weight: 500;
-  /*TODO: add font-family of inter */
-}
-
-.navbar .premium-button {
-  background: linear-gradient(to right, var(--gold), var(--gold-base));
-  box-shadow: 0 3px 10px 0 var(--gold-base);
-  color: var(--highlight-white);
-  border: 0 transparent;
-  border-radius: 15px;
-  padding: 10px;
-  margin: 7px;
-  font-weight: 500;
-}
-
-.navbar .menu-button {
+.menu-button {
   float: right;
   background: transparent;
   color: var(--highlight-white);
@@ -54,18 +19,18 @@
   font-weight: 500;
 }
 
-.navbar .more-button:hover {
+.more-button:hover {
   background-color: var(--highlight-white);
   color: var(--light-blue);
   border: 1px solid var(--light-blue);
 }
 
-.navbar .normal-button:active {
+.normal-button:active {
   background-color: transparent;
   color: var(--light-blue);
 }
 
-.navbar .premium-button:active {
+.premium-button:active {
   background: transparent;
   color: var(--gold);
   box-shadow: none;
