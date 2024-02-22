@@ -1,28 +1,43 @@
 import React, { useState } from "react";
 import '../../styles/header.css';
+
+import {FiMenu, FiX} from 'react-icons/fi';
+import Sidebar from './Sidebar'; // Update this import to match your file structure
+
 export default function Header() {
-    
-    const {isOpen, setOpen } = useState(false);
-    
-    function toggleState () {
-        isOpen = setOpen(!isOpen);
-    } 
+
+    const [isOpen, setOpen] = useState(false);
+
+    function toggleState() {
+        setOpen(!isOpen);
+    }
 
     return (
-        <>
-        <header className="navbar">
-            <button>
+        <div className="header-container">
+            <header className="navbar">
+                <h1>YOLO</h1>
+                <div className="main-content">
+                    <button className="normal-button">
+                        About Us
+                    </button>
+                    <button className="normal-button">
+                        For Creators
+                    </button>
+                    <button className="normal-button">
+                        For Developers
+                    </button>
+                    <button className="premium-button">
+                        Explore Premium
+                    </button>
+                </div>
 
-            </button>
-            <button>
-            </button>
-            <button className="premium-button">
-                Explore Premium
-            </button>
+                <button className="menu-button" onClick={toggleState}>
+                    {isOpen ? <FiX size={30}/> : <FiMenu size={30}/>}
+                </button>
 
-        </header>
+            </header>
 
-        </>
+            {isOpen && <Sidebar />}
+        </div>
     );
 }
-

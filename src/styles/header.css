@@ -1,29 +1,72 @@
+.header-container{
+      z-index: 10;
+}
 .navbar {
-    display: flex;
-    background-color: var(--base-grey);
-    color: var(--light-blue);
-    justify-content: center;
+  position: fixed;
+  width: 100%;
+  display: flex;
+  background-color: var(--base-grey);
+  color: var(--light-blue);
+  z-index: 10;
 }
 
-.navbar button {
-    background-color: var(--light-blue);
-    color: var(--highlight-white);
-    border: 0 transparent ;
-    border-radius: 15px;
-    padding: 10px;
-    margin-left: 5px;
-    font-weight:500;
-    /*TODO: add font-family of inter */
+.main-content {
+  justify-content: center;
+  justify-self: center;
+}
+
+.navbar h1 {
+  margin: 10px;
+  color: var(--highlight-white);
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+}
+
+.navbar .normal-button {
+  background-color: var(--light-blue);
+  color: var(--highlight-white);
+  border: 0 transparent;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 7px;
+  font-weight: 500;
+  /*TODO: add font-family of inter */
 }
 
 .navbar .premium-button {
-    background: linear-gradient(to right, var(--gold), var(--gold-base));
-    box-shadow: 0 3px 10px 0 var(--gold-base);
+  background: linear-gradient(to right, var(--gold), var(--gold-base));
+  box-shadow: 0 3px 10px 0 var(--gold-base);
+  color: var(--highlight-white);
+  border: 0 transparent;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 7px;
+  font-weight: 500;
 }
 
-.hamburger {
-    float:right;
-    justify-content: flex-end;
-    align-items: flex-end;
-    
+.navbar .menu-button {
+  float: right;
+  background: transparent;
+  color: var(--highlight-white);
+  border: 0px transparent;
+  padding: 10px;
+  margin: 7px;
+  font-weight: 500;
+}
+
+.navbar .more-button:hover {
+  background-color: var(--highlight-white);
+  color: var(--light-blue);
+  border: 1px solid var(--light-blue);
+}
+
+.navbar .normal-button:active {
+  background-color: transparent;
+  color: var(--light-blue);
+}
+
+.navbar .premium-button:active {
+  background: transparent;
+  color: var(--gold);
+  box-shadow: none;
 }
