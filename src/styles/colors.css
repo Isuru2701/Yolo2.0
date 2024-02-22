@@ -1,6 +1,6 @@
 :root {
     --highlight-white: #FFFFFF;
-    --sharp-ink: #F57CFF;
+    --sharp-pink: #F57CFF;
     --neutral-purple: #6C1D79;
     --light-blue: #9FA8FE;
     --sharp-blue: #55A3EB;
@@ -9,5 +9,8 @@
     --base: #B298DC;
     --accent: #B8D0EB;
     --sharp-accent: #B9FAF8;
+    --base-grey: #2e2e2e;
+    --gold: #fadd5fed;
+    --gold-base: #e9c603; 
 
 }

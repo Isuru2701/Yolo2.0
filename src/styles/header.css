@@ -1,0 +1,29 @@
+.navbar {
+    display: flex;
+    background-color: var(--base-grey);
+    color: var(--light-blue);
+    justify-content: center;
+}
+
+.navbar button {
+    background-color: var(--light-blue);
+    color: var(--highlight-white);
+    border: 0 transparent ;
+    border-radius: 15px;
+    padding: 10px;
+    margin-left: 5px;
+    font-weight:500;
+    /*TODO: add font-family of inter */
+}
+
+.navbar .premium-button {
+    background: linear-gradient(to right, var(--gold), var(--gold-base));
+    box-shadow: 0 3px 10px 0 var(--gold-base);
+}
+
+.hamburger {
+    float:right;
+    justify-content: flex-end;
+    align-items: flex-end;
+    
+}

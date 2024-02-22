@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import './styles/colors.css'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.css';
+
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -18,20 +21,25 @@ import Boost from './components/cc/Boost';
 import CCDashboard from './components/cc/CCDashboard';
 
 import Profile from './components/Profile';
+import Preferences from './components/Preferences';
+import Collection from './components/Collection';
 
 import Login from './components/Login';
 import Register from './components/Register';
 import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
 
+
 import AdminLogin from './components/admin/AdminLogin';
 import ManageCollections from './components/admin/ManageCollections';
 import ApproveRequests from './components/admin/ApproveRequests';
 
+import Header from './components/elements/Header';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <Header />
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
@@ -43,6 +51,8 @@ root.render(
         <Route path='/creators/boost' element={<Boost />} />
 
         <Route path='/profile' element={<Profile />} />
+        <Route path='/preferences' element={<Profile />} />
+        <Route path='/collection' element={<Profile />}/>
 
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
