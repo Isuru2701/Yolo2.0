@@ -4,7 +4,7 @@ import '../../styles/header.css';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
-import { MenuOutlined } from '@mui/icons-material';
+import { AppRegistrationOutlined, DeveloperMode, LoginOutlined, MenuOutlined, MovieCreationRounded, VerifiedUserOutlined, WorkspacePremiumOutlined } from '@mui/icons-material';
 
 export default function Header() {
     const [collapsed, setCollapsed] = useState(true);
@@ -29,12 +29,13 @@ export default function Header() {
                         <h2>YOLO</h2>
                     </MenuItem>
 
-                    <MenuItem icon={<HomeOutlinedIcon />}> Home</MenuItem>
-                    <MenuItem icon={<HomeOutlinedIcon />}>Login</MenuItem>
-                    <MenuItem icon={<HomeOutlinedIcon />}>Register</MenuItem>
-                    <MenuItem icon={<HomeOutlinedIcon />}>Profile</MenuItem>
-                    <MenuItem icon={<HomeOutlinedIcon />}>FAQ</MenuItem>
-                    <MenuItem icon={<HomeOutlinedIcon />}>Calendar</MenuItem>
+                    <MenuItem icon={<HomeOutlinedIcon />} href='/'> Home</MenuItem>
+                    <MenuItem icon={<LoginOutlined />} href='/login'>Login</MenuItem>
+                    <MenuItem icon={<AppRegistrationOutlined />} href='/register'>Register</MenuItem>
+                    <MenuItem icon={<VerifiedUserOutlined />} href='/profile'>Profile</MenuItem>
+                    <MenuItem icon={<WorkspacePremiumOutlined />} href='/checkout?t=premium'>Premium</MenuItem>
+                    <MenuItem icon={<MovieCreationRounded />} href='/creators'>Creators</MenuItem>
+                    <MenuItem icon={<DeveloperMode />} href='/developers'>Developers</MenuItem>
                 </Menu>
             </Sidebar>
         </div>
