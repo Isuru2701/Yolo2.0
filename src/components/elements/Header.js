@@ -15,7 +15,7 @@ export default function Header() {
     return (
         <div className="header-container">
             <header className="navbar">
-                <h1>YOLO</h1>
+                <a href='/' style={{textDecoration: 0}}><h1>YOLO</h1></a>
                 <div className="main-content">
                     <button className="normal-button">
                         About Us

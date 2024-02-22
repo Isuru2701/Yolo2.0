@@ -51,8 +51,8 @@ root.render(
         <Route path='/creators/boost' element={<Boost />} />
 
         <Route path='/profile' element={<Profile />} />
-        <Route path='/preferences' element={<Profile />} />
-        <Route path='/collection' element={<Profile />}/>
+        <Route path='/preferences' element={<Preferences />} />
+        <Route path='/collection' element={<Collection />}/>
 
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />

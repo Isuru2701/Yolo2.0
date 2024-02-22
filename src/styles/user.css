@@ -12,6 +12,8 @@
   font-size: 150px; /* Adjust as needed */
   margin-left: 50px; /* Adjust as needed */
   color: var(--light-blue);
+  position: relative;
+  width: auto;
 }
 
 .registration-form {
@@ -22,10 +24,11 @@
 .login-section {
   position: relative; /* Needed for the pseudo-element */
   margin-right: 50px; /* Adjust as needed */
-  text-align: right;
-  padding-right: 1%;
-  float: right;
+  text-align: center;
+  /* float: right; */
   width: 40%;
+  padding:1%;
+  border-radius: 10px;
 }
 
 .inline {
@@ -48,7 +51,7 @@ h2 {
   text-align: right;
   float: right;
   color: var(--heading-color);
-  letter-spacing: 1.2rem;
+  letter-spacing: 0rem;
 }
 
 .form-group {
@@ -60,7 +63,7 @@ label {
   margin-bottom: 8px;
   color: var(--tone-highlight);
   font-size: 30px;
-  letter-spacing: 1.2rem;
+  letter-spacing: 0.5rem;
 }
 
 input {
