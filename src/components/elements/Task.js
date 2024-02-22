@@ -1,5 +1,6 @@
 import React from 'react';
-import '../../styles/Task.css';
+import '../../styles/task.css'
+import { CheckCircle, HourglassEmpty } from '@mui/icons-material';
 
 export default function Task({title, link, completed}){
 
@@ -7,7 +8,7 @@ export default function Task({title, link, completed}){
         <>
         <div className='task-container'>
             <span> {/*render icon based on completion status */}
-                {completed ? <i className="fas fa-check-circle"></i> : <i className="far fa-circle"></i>}
+                {completed ? <CheckCircle fontSize='large'/>:<HourglassEmpty fontSize='large'/>}
             </span>
             <span>
                 <h1>{title}</h1>
