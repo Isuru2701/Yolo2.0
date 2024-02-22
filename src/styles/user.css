@@ -1,0 +1,167 @@
+.registration-container {
+  background-color: var(--base-black);
+  min-width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+.registration-heading {
+  font-size: 150px; /* Adjust as needed */
+  margin-left: 50px; /* Adjust as needed */
+  color: var(--light-blue);
+}
+
+.registration-form {
+  /* Adjust as needed */
+  width: 50%; /* Take up half the width of the .registration-container */
+}
+
+.login-section {
+  position: relative; /* Needed for the pseudo-element */
+  margin-right: 50px; /* Adjust as needed */
+  text-align: right;
+  padding-right: 1%;
+  float: right;
+  width: 40%;
+}
+
+.inline {
+  display: inline-flex;
+  width: 100%;
+}
+.check {
+  width: 15px;
+}
+.term {
+  padding-top: 10px;
+  padding-left: 20px;
+}
+.registration-form {
+  margin: 10%;
+  max-width: 400px;
+}
+
+h2 {
+  text-align: right;
+  float: right;
+  color: var(--heading-color);
+  letter-spacing: 1.2rem;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--tone-highlight);
+  font-size: 30px;
+  letter-spacing: 1.2rem;
+}
+
+input {
+  width: 95%;
+  padding: 10px;
+  border: 1px solid var(--tone-highlight);
+  border-radius: 4px;
+  background-color: var(--base-grey);
+  color: #fff;
+  outline: none;
+  margin: auto;
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.login-button {
+  margin: 100;
+  width: 95%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--tone-highlight);
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--main-button-hover);
+}
+
+.logo {
+  width: 200px;
+}
+.block {
+  display: block;
+}
+.btn {
+  background-color: var(--main-button);
+  padding: 10px;
+  border-radius: 10px;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
+.btn a {
+  color: white;
+  text-decoration: none;
+  width: 100%;
+  text-align: center;
+}
+.redirect {
+  color: white;
+  text-decoration: none;
+  padding: 5px;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .registration-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .registration-heading {
+        font-size: 100px; /* Reduce the font size */
+        margin-left: 0; /* Remove the left margin */
+    }
+
+    .registration-form {
+        width: 90%; /* Increase the width */
+        margin: 5%; /* Reduce the margin */
+    }
+
+    .login-section {
+        margin-right: 0; /* Remove the right margin */
+        width: 90%; /* Increase the width */
+    }
+
+    h2 {
+        font-size: 50px; /* Reduce the font size */
+    }
+
+    label {
+        font-size: 20px; /* Reduce the font size */
+    }
+
+    input {
+        width: 100%; /* Increase the width */
+    }
+
+    .login-button {
+        width: 100%; /* Increase the width */
+    }
+
+    .logo {
+        width: 150px; /* Reduce the width */
+    }
+}
