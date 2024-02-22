@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function DevDashboard() {
+export default function ManageCollections() {
     return (
         <></>
     );

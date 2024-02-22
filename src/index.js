@@ -4,6 +4,31 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import DevDashboard from './components/developer/DevDashboard';
+import Docs from './components/developer/Docs';
+
+
+import Cancel from './components/payments/Cancel';
+import Success from './components/payments/Success';
+import Checkout from './components/payments/Checkout';
+
+import Boost from './components/cc/Boost';
+import CCDashboard from './components/cc/CCDashboard';
+
+import Profile from './components/Profile';
+
+import Login from './components/Login';
+import Register from './components/Register';
+import ForgotPassword from './components/ForgotPassword';
+import ResetPassword from './components/ResetPassword';
+
+import AdminLogin from './components/admin/AdminLogin';
+import ManageCollections from './components/admin/ManageCollections';
+import ApproveRequests from './components/admin/ApproveRequests';
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -11,24 +36,26 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
 
-        <Route path='/developers' element={<Developer />} />
+        <Route path='/developers' element={<DevDashboard />} />
         <Route path='/developers/docs' element={<Docs />} />
 
-        <Route path='/creators' element={<Creator />} />
+        <Route path='/creators' element={<CCDashboard />} />
         <Route path='/creators/boost' element={<Boost />} />
 
         <Route path='/profile' element={<Profile />} />
 
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/forgot' element={<ForgotPassword />} />
+        <Route path='/reset' element={<ResetPassword />} />
 
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/cancel' element={<Cancel />} />
         <Route path='/success' element={<Success />} />
 
         <Route path='/admin' element={<AdminLogin />} />
-        <Route path='/admin/collections' element={<AdminCollections />} />
-        <Route path='/admin/contents' element={<AdminContents />} />
+        <Route path='/admin/collections' element={<ManageCollections />} />
+        <Route path='/admin/requests' element={<ApproveRequests />} />
 
 
 
