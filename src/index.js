@@ -7,7 +7,36 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+
+        <Route path='/developers' element={<Developer />} />
+        <Route path='/developers/docs' element={<Docs />} />
+
+        <Route path='/creators' element={<Creator />} />
+        <Route path='/creators/boost' element={<Boost />} />
+
+        <Route path='/profile' element={<Profile />} />
+
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+
+        <Route path='/checkout' element={<Checkout />} />
+        <Route path='/cancel' element={<Cancel />} />
+        <Route path='/success' element={<Success />} />
+
+        <Route path='/admin' element={<AdminLogin />} />
+        <Route path='/admin/collections' element={<AdminCollections />} />
+        <Route path='/admin/contents' element={<AdminContents />} />
+
+
+
+      </Routes>
+
+
+
+    </BrowserRouter>
   </React.StrictMode>
 );
 
