@@ -92,9 +92,6 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
-button:hover {
-  background-color: var(--main-button-hover);
-}
 
 .logo {
   width: 200px;
