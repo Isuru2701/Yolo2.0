@@ -80,5 +80,24 @@
     width: 80%;
     margin: 10px;
     padding: 10px;
+    max-height: 500px;
+    overflow-y: auto;
     
 }
+
+/* Style the scrollbar */
+.task-list::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+  }
+  
+  .task-list::-webkit-scrollbar-track {
+    background: transparent; /* Color of the track */
+  }
+  
+  .task-list::-webkit-scrollbar-thumb {
+    background: var(--accent); /* Color of the thumb */
+  }
+  
+  .task-list::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color of the thumb when hovered */
+  }

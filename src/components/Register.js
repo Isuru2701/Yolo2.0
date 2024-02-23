@@ -24,7 +24,7 @@ export default function Register() {
     return (
         <div className="registration-container">
             <div className='login-section'>
-                <h2 className='registration-heading'>Register</h2>
+                <h2 className='registration-heading' style={{marginLeft: 10}}>Register</h2>
             </div>
             <form className="registration-form" onSubmit={handleRegister}>
 
