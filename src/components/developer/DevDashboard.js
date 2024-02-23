@@ -2,6 +2,7 @@ import React from "react";
 import Chart from '../elements/Chart';
 
 import '../../styles/developer.css';
+import { Article, CopyAll, DocumentScanner, PictureAsPdf } from "@mui/icons-material";
 
 
 export default function DevDashboard() {
@@ -24,15 +25,16 @@ export default function DevDashboard() {
                         <div className='api-token'>
                             <input type="text" placeholder="API Token" />
                             <button className='generate-btn'>Generate New Token</button>
-                            <button className='copy'><img src='/copy-icon.png' /></button>
+                            <button className='copy'><CopyAll /></button>
                         </div>
 
                         <br></br>
 
                         <br></br>
                         <span className='docs-container'>
-                            <img src='docs-icon.png' className='docs-icon' />
-                            <a href='/developers/docs'>DOCS</a>
+                            
+                            <button className="generate-btn"><Article />DOCS</button>
+
                         </span>
 
                     </div>
