@@ -23,7 +23,7 @@ export default function Checkout() {
 
             </div>
             <div className='amt-info'>
-                <h1 className='amt'>$5</h1>
+                <h1 className='amt'>$4.99</h1>
                 <hr style={{color: 'black'}}/>
                 <button className='checkout-btn'>Checkout With Stripe</button>
             </div>
