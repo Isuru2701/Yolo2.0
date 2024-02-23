@@ -5,7 +5,7 @@
   background-color: var(--base-grey);
   color: var(--tone-highlight);
   z-index: 90;
-  position: absolute;
+  position: fixed;
 }
 
 

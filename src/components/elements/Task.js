@@ -10,7 +10,7 @@ export default function Task({title, link, completed}){
             <span> {/*render icon based on completion status */}
                 {completed ? <CheckCircle fontSize='large'/>:<HourglassEmpty fontSize='large'/>}
             </span>
-            <span>
+            <span style={{marginLeft: 30}}>
                 <h1>{title}</h1>
                 <p>{link}</p>
             </span>

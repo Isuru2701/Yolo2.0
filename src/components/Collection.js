@@ -23,6 +23,17 @@ export default function Collection() {
                 <Task title='Task 1' link='https://www.google.com' completed={true} />
                 <Task title='Task 2' link='https://www.google.com' completed={true} />
                 <Task title='Task 3' link='https://www.google.com' completed={false} />
+                <Task title='Task 3' link='https://www.google.com' completed={false} />
+                <Task title='Task 3' link='https://www.google.com' completed={false} />
+                <Task title='Task 3' link='https://www.google.com' completed={false} />
+                <Task title='Task 3' link='https://www.google.com' completed={false} />
+                <Task title='Task 3' link='https://www.google.com' completed={false} />
+                <Task title='Task 3' link='https://www.google.com' completed={false} />
+                <Task title='Task 3' link='https://www.google.com' completed={false} />
+                <Task title='Task 3' link='https://www.google.com' completed={false} />
+                <Task title='Task 3' link='https://www.google.com' completed={false} />
+                <Task title='Task 3' link='https://www.google.com' completed={false} />
+                <Task title='Task 3' link='https://www.google.com' completed={false} />
             </div>
 
         </div>
