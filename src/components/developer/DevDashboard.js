@@ -25,6 +25,7 @@ export default function DevDashboard() {
                         <div className='api-token'>
                             <input type="text" placeholder="API Token" />
                             <button className='generate-btn'>Generate New Token</button>
+                            <button className="generate-btn"><Article />DOCS</button>
                             <button className='copy'><CopyAll /></button>
                         </div>
 
@@ -33,7 +34,7 @@ export default function DevDashboard() {
                         <br></br>
                         <span className='docs-container'>
                             
-                            <button className="generate-btn"><Article />DOCS</button>
+                            
 
                         </span>
 
