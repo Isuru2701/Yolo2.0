@@ -33,6 +33,10 @@
         background-position: 0% 50%;
     }
 }
+.item-info-container footer{
+    color: white;
+    font-size: 10px;
+}
 
 .item-info {
   background-color: var(--base-grey);

@@ -19,7 +19,9 @@ export default function Checkout() {
                             <li>benefit</li>
                         </ul>
                     </div>
+                    
                 </div>
+                <footer>*recurring monthly</footer>
 
             </div>
             <div className='amt-info'>
