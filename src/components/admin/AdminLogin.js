@@ -17,7 +17,7 @@ export default function AdminLogin() {
             <div className="registration-container">
 
                 <div className="login-section">
-                    <h2 className="registration-heading">Admin Login</h2>
+                    <h2 className="registration-heading">Admin</h2>
                 </div>
                 <form className="registration-form" onSubmit={handleLogin}>
                     <div className="form-group">
