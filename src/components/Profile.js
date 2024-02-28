@@ -10,22 +10,22 @@ export default function Profile() {
         <>
             <div className="profile-container">
                 <div className="profile-header">
-                    <h1 style={{color:'white'}}>Profile</h1>
-                    <br></br>
-                    <h2 style={{color:'white'}}>Hello username!</h2>
+                    <h1 style={{ color: 'white' }}>Profile</h1>
+                    <h2 style={{ color: 'white' }}>Hello username!</h2>
+                    <br />
                     <span> {/*quick buttons */}
-                        <button className="quick-button">Edit</button>
                         <button className="quick-button">Stripe portal</button>
                         <button className="quick-button coffee">Buy us a coffee</button>
                     </span>
                 </div>
 
                 <div className="collections-container">
-                    <br/>
-                    <br/>
-                    <br/>
-                    <h1 style={{color: "white"}}>Collections you've subscribed to</h1>
-
+                    <br />
+                    <br />
+                    <div className="profile-header">
+                        <h2 style={{ color: 'white' }}>Collections you've subscribed to</h2>
+                    </div>
+                    <br />
                     <div className="collection-grid">
                         <Grid container spacing={3}>
                             <Grid item xs={6}>

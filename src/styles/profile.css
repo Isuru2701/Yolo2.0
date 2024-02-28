@@ -25,9 +25,11 @@
 .profile-container .profile-header .quick-button {
   margin: 10px;
   padding: 10px;
+  border: none;
   border-radius: 5px;
   color: var(--highlight-white);
   background-color: var(--neutral-purple);
+  font-weight: bold;
 
 }
 
@@ -45,7 +47,7 @@
 
 .collection{
   color: var(--highlight-white);
-  background-color: var(--base-black);
+  background-color: var(--deep-blue);
   border-radius: 10px;
   padding: 20px;
   display: flex;
