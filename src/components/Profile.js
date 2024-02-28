@@ -19,7 +19,8 @@ export default function Profile() {
                     </span>
                 </div>
 
-                <div className="collections-container">
+
+                <div className="collections-container" id="#collections">
                     <br />
                     <br />
                     <div className="profile-header">
