@@ -11,12 +11,8 @@ export default function AdminDashboard() {
 
                 </div>
 
-                <div className='admin-analytics'>
-                    <ChartComponent />
-                    <ChartComponent />
-                    <ChartComponent />
-                    <button>generate as report</button>
-                </div>
+                <br />
+
 
                 <div className='admin-actions'>
                     <button>
@@ -29,6 +25,19 @@ export default function AdminDashboard() {
                         edit a collection
                     </button>
 
+                </div>
+
+                <br />
+
+                <div className='admin-header'>
+                    <h2> Analytics </h2>
+                </div>
+                <div className='admin-analytics'>
+
+                    <ChartComponent />
+                    <ChartComponent />
+                    <ChartComponent />
+                    <button>generate as report</button>
                 </div>
 
 
