@@ -1,5 +1,7 @@
 import React from "react";
-import '../'
+import '../../styles/admin.css';
+import { Chart } from "react-chartjs-2";
+import ChartComponent from "../elements/Chart";
 export default function AdminDashboard() {
     return (
         <>
@@ -10,7 +12,10 @@ export default function AdminDashboard() {
                 </div>
 
                 <div className='admin-analytics'>
-                    <button>generate report</button>
+                    <ChartComponent />
+                    <ChartComponent />
+                    <ChartComponent />
+                    <button>generate as report</button>
                 </div>
 
                 <div className='admin-actions'>

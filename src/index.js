@@ -30,6 +30,7 @@ import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
 
 
+import AdminDashboard from './components/admin/AdminDashboard';
 import AdminLogin from './components/admin/AdminLogin';
 import ManageCollections from './components/admin/ManageCollections';
 import ApproveRequests from './components/admin/ApproveRequests';
@@ -66,7 +67,7 @@ root.render(
           <Route path='/cancel' element={<Cancel />} />
           <Route path='/success' element={<Success />} />
 
-          <Route path='/admin' element={<AdminLogin />} />
+          <Route path='/admin' element={<AdminDashboard />} />
           <Route path='/admin/collections' element={<ManageCollections />} />
           <Route path='/admin/requests' element={<ApproveRequests />} />
 
