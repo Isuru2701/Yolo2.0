@@ -67,7 +67,8 @@ root.render(
           <Route path='/cancel' element={<Cancel />} />
           <Route path='/success' element={<Success />} />
 
-          <Route path='/admin' element={<AdminDashboard />} />
+          <Route path='/admin' element={<AdminLogin />} />
+          <Route path='/admin/dashboard' element={<AdminDashboard />} />
           <Route path='/admin/collections' element={<ManageCollections />} />
           <Route path='/admin/requests' element={<ApproveRequests />} />
 

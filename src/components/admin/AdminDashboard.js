@@ -1,6 +1,5 @@
 import React from "react";
 import '../../styles/admin.css';
-import { Chart } from "react-chartjs-2";
 import ChartComponent from "../elements/Chart";
 export default function AdminDashboard() {
     return (

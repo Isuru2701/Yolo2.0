@@ -1,7 +1,6 @@
 .admin-dashboard-container {
   background-color: var(--base-black);
   justify-content: center;
-  align-items:start;
   display: flex;
   flex-direction: column;
   width:100%;
