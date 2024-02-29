@@ -21,7 +21,7 @@ export default function AdminDashboard() {
                         create a collection
                     </button>
                     <button>
-                        edit a collection
+                        edit collections
                     </button>
 
                 </div>
