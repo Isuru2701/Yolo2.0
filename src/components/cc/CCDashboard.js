@@ -2,6 +2,8 @@ import React from "react";
 import '../../styles/creators.css';
 import CCSpotify from './CCSpotify';
 import CCYoutube from './CCYoutube';
+
+import Task from "../elements/Task";
 export default function CCDashboard() {
 
     //switch content render based on button click
@@ -29,6 +31,18 @@ export default function CCDashboard() {
                 <br />
                 <div className='cc-content'>
                     {content === 'spotify' ? <CCSpotify /> : <CCYoutube />}
+                </div>
+
+                <div className='boost-history'>
+                    <div className='task-list'>
+                        <Task title='Task 1' link='https://www.google.com' boost />
+                        <Task title='Task 2' link='https://www.google.com' boost />
+                        <Task title='Task 3' link='https://www.google.com' boost />
+                        <Task title='Task 3' link='https://www.google.com' boost />
+                        <Task title='Task 3' link='https://www.google.com' boost />
+                        <Task title='Task 3' link='https://www.google.com' boost />
+                    </div>
+
                 </div>
             </div>
 
