@@ -10,7 +10,7 @@
 
 .cc-header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
     padding: 1rem 2rem;
     width: 90%;
@@ -19,10 +19,22 @@
     margin: 10px;
 }
 
+.cc-header h1 {
+    margin-bottom: 20px;
+}
+
+.cc-header span {
+    display: flex;
+    justify-content: flex-start;
+    width: 50%;
+}
+
 .cc-header button {
+    display:flex;
     background-color: var(--sharp-accent);
     color: var(--base-black);
-    padding: 0.5rem 1rem;
+    padding: 0.5rem;
+    align-items: center;
     border: none;
     border-radius: 5px;
     margin: 0.5rem;
@@ -30,8 +42,7 @@
     
 }
 .cc-header img{
-    width: 10%;
-    height: 10%;
+    width: 30%;
     object-fit: contain;
     border-radius: 50%;
     margin: 0.5rem;
@@ -39,4 +50,22 @@
 
 .cc-content-container {
 
+    margin:10px;
+    background-color: var(--base-grey);
+    width:90%;
+
+}
+
+.cc-header .stripe-button {
+    background-color: var(--highlight-white);
+    color: var(--highlight-white);
+    border: none;
+    border-radius: 5px;
+
+}
+
+.cc-header .stripe-button img {
+    width: 30%;
+    justify-content: center;
+    
 }

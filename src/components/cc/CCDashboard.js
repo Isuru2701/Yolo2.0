@@ -19,11 +19,14 @@ export default function CCDashboard() {
                 <div className='cc-header'>
                     <h1>Content Creator Dashboard</h1>
                     <br />
-                    <button onClick={() => changeContent('spotify')} ><img src='spotify-icon.svg' /> Spotify</button>
-                    <button onClick={() => changeContent('youtube')}><img src='youtube-icon.svg' /> Youtube</button>
+                    <span>
+                        <button onClick={() => changeContent('spotify')} ><img src='spotify-icon.svg' /> Spotify</button>
+                        <button onClick={() => changeContent('youtube')}><img src='youtube-icon.svg' /> Youtube</button>
+                        <button className='stripe-button'><center><img src='stripe-icon.svg' /></center></button>
+                    </span>
                 </div>
-                
-                <br/>
+
+                <br />
                 <div className='cc-content'>
                     {content === 'spotify' ? <CCSpotify /> : <CCYoutube />}
                 </div>
