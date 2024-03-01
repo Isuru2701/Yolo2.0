@@ -10,6 +10,7 @@ export default function Login() {
 
         // Here you can handle the login logic (e.g., send the username and password to your server)
 
+
         console.log(`Logging in with username: ${username} and password: ${password}`);
     };
 
