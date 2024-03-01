@@ -53,7 +53,7 @@ export default function Register() {
         }
 
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}users/register`, {
                 method: "POST",
                 headers: {
                     'Accept': 'application/json',

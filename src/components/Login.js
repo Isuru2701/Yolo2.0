@@ -12,7 +12,7 @@ export default function Login() {
         event.preventDefault(); // Prevent the form from refreshing the page
 
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/users/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -22,6 +22,8 @@ export default function Login() {
 
             if (response.ok) {
                 Cookies.set ("email",email)// Update cookie or perform any other successful login action
+                //redirect
+                window.location.href = "/";
             } else {
                 setError(true);
             }
@@ -46,6 +48,7 @@ export default function Login() {
                         <input type="password" id="password" name="password" required onChange={(e) => setPassword(e.target.value)} />
                     </div>
                     <button className='login-button' type="submit">Login</button>
+                    <br></br>
                     <br></br>
                     <a className="redirect" href="/register">New to the platform? create an account for free.</a>
                 </form>
