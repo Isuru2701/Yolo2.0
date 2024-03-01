@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState(false);
+    const [error, setError] = useState("");
 
     const handleLogin = async (event) => {
         event.preventDefault(); // Prevent the form from refreshing the page
@@ -17,18 +17,18 @@ export default function Login() {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({"email": email,"password": password })
+                body: JSON.stringify({ "email": email, "password": password })
             });
 
             if (response.ok) {
-                Cookies.set ("email",email)// Update cookie or perform any other successful login action
+                Cookies.set("email", email)// Update cookie or perform any other successful login action
                 //redirect
                 window.location.href = "/";
             } else {
-                setError(true);
+                setError("Invalid email or password. Please try again.");
             }
         } catch (error) {
-            setError(true);
+            setError("An unknown error occurred. Please try again later.");
         }
     };
 
@@ -48,11 +48,14 @@ export default function Login() {
                         <input type="password" id="password" name="password" required onChange={(e) => setPassword(e.target.value)} />
                     </div>
                     <button className='login-button' type="submit">Login</button>
+
                     <br></br>
                     <br></br>
+                    {error && <p className='error-message'>{error}</p>}
                     <a className="redirect" href="/register">New to the platform? create an account for free.</a>
+
                 </form>
-                {error && <p>Error occurred during login.</p>}
+
             </div>
         </>
     );

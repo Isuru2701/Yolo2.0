@@ -8,12 +8,9 @@ import Cookies from "js-cookie";
 
 export default function DevDashboard() {
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
 
-    const handleUsage = async (event) => {
-        event.preventDefault(); // Prevent the form from refreshing the page
+    const handleUsage = async () => {
 
         try {
             const response = await fetch(`${process.env.REACT_APP_API_URL}/developers/usage?email=${Cookies.get("email")}`, {
