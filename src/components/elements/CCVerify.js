@@ -9,11 +9,17 @@ export default function CCVerify() {
       <Popover
         open={true}
         anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
+          vertical: 'center',
+          horizontal: 'center',
         }}
+        transformOrigin={{
+          vertical: 'center',
+          horizontal: 'center',
+        }}
+
       >
-        <Typography sx={{ p: 2 }}>The content of the Popover.</Typography>
+        <Typography sx={{ p: 10 }}> Are you a content creator? </Typography>
+        <Typography sx={{ p: 2 }}> </Typography>
       </Popover>
     </>
   );
