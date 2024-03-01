@@ -1,7 +1,10 @@
 import React from "react";
 import '../../styles/creators.css';
+import Cookies from "js-cookie";
+
 import CCSpotify from './CCSpotify';
 import CCYoutube from './CCYoutube';
+import CCVerify from "../elements/CCVerify";
 
 import Task from "../elements/Task";
 export default function CCDashboard() {
@@ -20,6 +23,7 @@ export default function CCDashboard() {
     return (
         <>
             <div className='cc-dashboard-container'>
+                {!Cookies.get('cc') && <CCVerify/>}
                 <div className='cc-header'>
                     <h1>Content Creator Dashboard</h1>
                     <br />
