@@ -10,21 +10,71 @@ export default function Register() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
-    const handleRegister = (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
 
-        // Validate the form fields
+        // Validation checks
+        if (!name.trim()) {
+            alert('Please enter your name.');
+            return;
+        }
 
-        // Send a request to the server to register the user
+        if (!country.trim()) {
+            alert('Please enter your country.');
+            return;
+        }
 
-        // Handle the server's response
+        if (!region.trim()) {
+            alert('Please enter your region.');
+            return;
+        }
+
+        if (!email.trim()) {
+            alert('Please enter your email.');
+            return;
+        }
+
+        // Simple email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('Please enter a valid email.');
+            return;
+        }
+
+        if (!password.trim()) {
+            alert('Please enter your password.');
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            alert('Passwords do not match.');
+            return;
+        }
+
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ "name": name, "country": country, "region": region, "email": email, "password": password })
+            });
+
+            if (response.ok) {
+                // Update cookie or perform any other successful login action
+            } else {
+                setError(true);
+            }
+        } catch (error) {
+            setError(true);
+        }
     };
 
 
     return (
         <div className="registration-container">
             <div className='login-section'>
-                <h2 className='registration-heading' style={{marginLeft: 10}}>Register</h2>
+                <h2 className='registration-heading' style={{ marginLeft: 10 }}>Register</h2>
             </div>
             <form className="registration-form" onSubmit={handleRegister}>
 
