@@ -4,10 +4,12 @@ import '../../styles/header.css';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
-import { AppRegistrationOutlined, DeveloperMode, LoginOutlined, MenuOutlined, MovieCreationRounded, Person2Outlined, VerifiedUserOutlined, WorkspacePremiumOutlined } from '@mui/icons-material';
+import { AppRegistrationOutlined, DeveloperMode, ExitToApp, LoginOutlined, LogoDev, MenuOutlined, MovieCreationRounded, Person2Outlined, VerifiedUserOutlined, WorkspacePremiumOutlined } from '@mui/icons-material';
+import Cookies from 'js-cookie';
 
 export default function Header() {
     const [collapsed, setCollapsed] = useState(true);
+
 
     const toggleSidebar = () => {
         setCollapsed(!collapsed);
@@ -20,6 +22,12 @@ export default function Header() {
     const closeSidebar = () => {
         setCollapsed(true);
     }
+
+    const handleLogout = async () => {
+        Cookies.remove('email');
+        window.location.href = '/login';
+    }
+
 
     return (
         <div className='header-container'
@@ -41,12 +49,13 @@ export default function Header() {
                     </MenuItem>
 
                     <MenuItem icon={<HomeOutlinedIcon />} href='/'> Home</MenuItem>
-                    <MenuItem icon={<LoginOutlined />} href='/login'>Login</MenuItem>
-                    <MenuItem icon={<Person2Outlined />} href='/register'>Register</MenuItem>
+                    {!Cookies.get('email') && <MenuItem icon={<LoginOutlined />} href='/login'>Login</MenuItem>}
+                    {!Cookies.get('email') && <MenuItem icon={<Person2Outlined />} href='/register'>Register</MenuItem>}
                     <MenuItem icon={<VerifiedUserOutlined />} href='/profile'>Profile</MenuItem>
                     <MenuItem icon={<WorkspacePremiumOutlined />} href='/checkout?t=premium'>Premium</MenuItem>
                     <MenuItem icon={<MovieCreationRounded />} href='/creators'>Creators</MenuItem>
-                    <MenuItem icon={<DeveloperMode />} href='/developers'>Developers</MenuItem>
+                    <MenuItem icon={<LogoDev />} href='/developers'>Developers</MenuItem>
+                    {Cookies.get('email') && <MenuItem icon={<ExitToApp />} onClick={handleLogout}>Logout</MenuItem>}
                 </Menu>
             </Sidebar>
         </div>
