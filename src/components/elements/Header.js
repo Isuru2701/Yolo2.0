@@ -51,7 +51,7 @@ export default function Header() {
                     <MenuItem icon={<HomeOutlinedIcon />} href='/'> Home</MenuItem>
                     {!Cookies.get('email') && <MenuItem icon={<LoginOutlined />} href='/login'>Login</MenuItem>}
                     {!Cookies.get('email') && <MenuItem icon={<Person2Outlined />} href='/register'>Register</MenuItem>}
-                    <MenuItem icon={<VerifiedUserOutlined />} href='/profile'>Profile</MenuItem>
+                    {Cookies.get('email') && <MenuItem icon={<VerifiedUserOutlined />} href='/profile'>Profile</MenuItem>}
                     <MenuItem icon={<WorkspacePremiumOutlined />} href='/checkout?t=premium'>Premium</MenuItem>
                     <MenuItem icon={<MovieCreationRounded />} href='/creators'>Creators</MenuItem>
                     <MenuItem icon={<LogoDev />} href='/developers'>Developers</MenuItem>
