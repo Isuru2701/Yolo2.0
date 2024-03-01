@@ -2,10 +2,39 @@ import React from "react";
 import Chart from '../elements/Chart';
 
 import '../../styles/developer.css';
-import { Article, CopyAll, DocumentScanner, PictureAsPdf } from "@mui/icons-material";
+import { Article, Cookie, CopyAll, DocumentScanner, PictureAsPdf } from "@mui/icons-material";
+import Cookies from "js-cookie";
 
 
 export default function DevDashboard() {
+    
+handleUsage()
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState(false);
+
+    const handleUsage = async (event) => {
+        event.preventDefault(); // Prevent the form from refreshing the page
+
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/usage?email=${Cookies.get("email")}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+
+            if (response.ok) {
+                // Update cookie or perform any other successful login action
+            } else {
+                setError(true);
+            }
+        } catch (error) {
+            setError(true);
+        }
+    };
+
     return (
         <>
             <div className='dev-container'>

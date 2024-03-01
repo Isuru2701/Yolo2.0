@@ -14,6 +14,8 @@ export default function CCDashboard() {
         setContent(content);
     }
 
+    
+
     //load previous boosts (history) here too. include views.
     return (
         <>

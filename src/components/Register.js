@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import '../styles/user.css';
+import Cookies from 'js-cookie';
 
 export default function Register() {
-
+    const [error, setError] = useState(false);
     const [name, setName] = useState("");
     const [country, setCountry] = useState("");
     const [region, setRegion] = useState("");
@@ -55,13 +56,16 @@ export default function Register() {
             const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    'Accept': 'application/json',
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": '*',
+                    "Access-Control-Allow-Credentials": 'true'
                 },
                 body: JSON.stringify({ "name": name, "country": country, "region": region, "email": email, "password": password })
             });
 
             if (response.ok) {
-                // Update cookie or perform any other successful login action
+                Cookies.set("email",email)// Update cookie or perform any other successful login action
             } else {
                 setError(true);
             }
@@ -156,8 +160,9 @@ export default function Register() {
                         I agree to the terms and conditions
                     </label>
                 </div>
-                <button type="submit" className='login-button'>Register</button>
+                <button type="submit" onClick={handleRegister} className='login-button'>Register</button>
                 <a className="redirect" href="login.html">
+                    
                     already have an account? click here to login
                 </a>
             </form>

@@ -1,6 +1,7 @@
 
 import React, { useState } from "react";
 import '../styles/user.css';
+import Cookies from 'js-cookie';
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -20,7 +21,7 @@ export default function Login() {
             });
 
             if (response.ok) {
-                // Update cookie or perform any other successful login action
+                Cookies.set ("email",email)// Update cookie or perform any other successful login action
             } else {
                 setError(true);
             }
