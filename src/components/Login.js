@@ -15,6 +15,7 @@ export default function Login() {
             const response = await fetch(`${process.env.REACT_APP_API_URL}/users/login`, {
                 method: "POST",
                 headers: {
+                    "Access-Control-Allow-Origin": "*",
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({ "email": email, "password": password })
