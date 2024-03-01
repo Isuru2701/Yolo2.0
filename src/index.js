@@ -36,6 +36,7 @@ import ManageCollections from './components/admin/ManageCollections';
 import ApproveRequests from './components/admin/ApproveRequests';
 
 import Header from './components/elements/Header';
+import Enroll from './components/cc/Enroll';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -53,6 +54,7 @@ root.render(
 
           <Route path='/creators' element={<CCDashboard />} />
           <Route path='/creators/boost' element={<Boost />} />
+          <Route path='creators/enroll' element={<Enroll />} />
 
           <Route path='/profile' element={<Profile />} />
           <Route path='/preferences' element={<Preferences />} />
@@ -71,7 +73,6 @@ root.render(
           <Route path='/admin/dashboard' element={<AdminDashboard />} />
           <Route path='/admin/collections' element={<ManageCollections />} />
           <Route path='/admin/requests' element={<ApproveRequests />} />
-
 
 
         </Routes>
