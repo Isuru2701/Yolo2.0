@@ -67,6 +67,7 @@ export default function Register() {
         try {
             const response = await fetch(`${process.env.REACT_APP_API_URL}/users/register`, {
                 method: "POST",
+                mode: "cors",
                 headers: {
                     "Access-Control-Allow-Origin": "*",
                     "Content-Type": "application/json",
