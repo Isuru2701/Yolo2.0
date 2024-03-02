@@ -26,13 +26,11 @@ export default function Enroll() {
                     "Access-Control-Allow-Origin": "*",
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ "type": userType, "link": link, "email": Cookies.get("email"), "business_email": email, "goal": goal})
+                body: JSON.stringify({ "type": userType, "link": link, "email": Cookies.get("email"), "business_email": email, "description": goal})
             });
 
             if (response.ok) {
                 window.location.href = '/success'
-                //redirect
-                window.location.href = "/";
             } else {
                 setError("Action did not complete successfully. Please try again later");
             }
