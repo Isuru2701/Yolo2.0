@@ -98,3 +98,15 @@
     color: var(--highlight-white);
     margin: 10px;
 }
+
+.cc-popover {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    width: 90%;
+    background-color: var(--base-black);
+    color: var(--highlight-white);
+    margin: 10px;
+}
