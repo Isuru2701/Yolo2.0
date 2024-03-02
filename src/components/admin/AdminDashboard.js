@@ -40,7 +40,7 @@ export default function AdminDashboard() {
                     <ChartComponent />
                     <ChartComponent />
                     <ChartComponent />
-                    <button>generate as report</button>
+                    <button>generate report</button>
                 </div>
 
 

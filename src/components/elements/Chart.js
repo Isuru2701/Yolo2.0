@@ -6,11 +6,11 @@ import { ArcElement, CategoryScale, Title, Tooltip } from 'chart.js';
 // Register the elements
 Chart.register(ArcElement, CategoryScale, Title, Tooltip);
 
-function ChartComponent() {
+function ChartComponent({dataset = [12, 19, 3, 5, 2, 3]}) {
     const data = {
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [{
-            data: [12, 19],
+            data: dataset,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
