@@ -25,7 +25,7 @@ export default function AdminLogin() {
                 Cookies.set("email", email)// Update cookie or perform any other successful login action
                 Cookies.set('admin', true)
                 //redirect
-                window.location.href = "/admin";
+                window.location.href = "/admin/dashboard";
             } else {
                 setError("Invalid email or password. Please try again.");
             }
