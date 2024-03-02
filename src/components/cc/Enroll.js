@@ -1,18 +1,46 @@
 import React from "react";
 import '../../styles/creators.css'
+import Cookies from "js-cookie";
 export default function Enroll() {
+
+    if (!Cookies.get("email")) {
+        window.location.href = "/login";
+    }
 
     const [userType, setUserType] = React.useState("");
     const [link, setLink] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [goal, setGoal] = React.useState("");
+    const [error, setError] = React.useState("");
     const [youtuberPressed, setYoutuberPressed] = React.useState(false);
     const [artistPressed, setArtistPressed] = React.useState(false);
 
-    const handleSubmit = (event) => {
+    const handleEnroll = async (event) => {
         event.preventDefault();
-        // Handle form submission here
-        console.log(userType, link, email, goal);
+
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/creators/request`, {
+                method: "POST",
+                mode: "cors",
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ "type": userType, "link": link, "email": Cookies.get("email"), "business_email": email, "goal": goal})
+            });
+
+            if (response.ok) {
+                window.location.href = '/success'
+                //redirect
+                window.location.href = "/";
+            } else {
+                setError("Action did not complete successfully. Please try again later");
+            }
+        } catch (error) {
+            setError("An unknown error occurred. Please try again later.");
+        }
+
+        
     };
 
     const youtube = () => {
@@ -30,7 +58,7 @@ export default function Enroll() {
     return (
         <>
             <div className='cc-dashboard-container'>
-                <form onSubmit={handleSubmit} style={{margin: 50}}>
+                <form onSubmit={handleEnroll} style={{margin: 50}}>
                     <label>What is your platform</label>
                     <button className={`choice-button${youtuberPressed? '-pressed': ''}`} value="youtuber" onClick={youtube}>
                         <img src='/youtube-icon.svg' style={{ width: '10%', height: 'auto', objectFit: 'cover' }} />   Youtube
@@ -70,7 +98,7 @@ export default function Enroll() {
                         }}
                         value={goal} onChange={e => setGoal(e.target.value)} required />
 
-                    <input type="submit" value="Submit" onClick={handleSubmit} />
+                    <input type="submit" value="Submit" onClick={handleEnroll} />
                 </form>
             </div>
         </>
