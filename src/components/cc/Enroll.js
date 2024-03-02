@@ -6,6 +6,8 @@ export default function Enroll() {
     const [link, setLink] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [goal, setGoal] = React.useState("");
+    const [youtuberPressed, setYoutuberPressed] = React.useState(false);
+    const [artistPressed, setArtistPressed] = React.useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -13,32 +15,62 @@ export default function Enroll() {
         console.log(userType, link, email, goal);
     };
 
+    const youtube = () => {
+        setUserType('youtuber');
+        setYoutuberPressed(true);
+        setArtistPressed(false);
+    }
+
+    const artist = () => {
+        setUserType('artist');
+        setArtistPressed(true);
+        setYoutuberPressed(false);
+    }
+
     return (
         <>
             <div className='cc-dashboard-container'>
-                <form onSubmit={handleSubmit}>
-                    <label>
-                        <button value="youtuber" onClick={() => setUserType('youtuber')}>
-                            <img src='youtube-icon.svg' />Youtuber
-                        </button>
-                        <button value="musician" onClick={() => setUserType('artist')}>
-                            <img src='spotify-icon.svg' />Artist
-                        </button>
+                <form onSubmit={handleSubmit} style={{margin: 50}}>
+                    <label>What is your platform</label>
+                    <button className={`choice-button${youtuberPressed? '-pressed': ''}`} value="youtuber" onClick={youtube}>
+                        <img src='/youtube-icon.svg' style={{ width: '10%', height: 'auto', objectFit: 'cover' }} />   Youtube
+                    </button>
+                    <button className={`choice-button${artistPressed? '-pressed': ''}`} value="musician" onClick={artist}>
+                        <img src='/spotify-icon.svg' style={{ width: '10%', height: 'auto', objectFit: 'cover' }} />   Spotify
+                    </button>
 
-                    </label>
+
                     <label>
                         Link to your page:
-                        <input type="url" value={link} onChange={e => setLink(e.target.value)} required />
                     </label>
+                    <input type="url" value={link} onChange={e => setLink(e.target.value)} required />
+
                     <label>
                         Business email:
-                        <input type="email" value={email} onChange={e => setEmail(e.target.value)} required />
                     </label>
+                    <input type="email" value={email} onChange={e => setEmail(e.target.value)} required />
+
                     <label>
                         What do you hope to achieve on the platform?
-                        <textarea value={goal} onChange={e => setGoal(e.target.value)} required />
                     </label>
-                    <input type="submit" value="Submit" />
+                    <textarea
+                        style={{
+                            width: '90%',
+                            height: '150px',
+                            padding: '10px',
+                            fontSize: '16px',
+                            border: '1px solid #ccc',
+                            borderRadius: '4px',
+                            boxSizing: 'border-box',
+                            resize: 'vertical',
+                            marginTop: '10px',
+                            marginBottom: '10px',
+                            backgroundColor: 'var(--base-grey)',
+                            color: 'var(--highlight-white)'
+                        }}
+                        value={goal} onChange={e => setGoal(e.target.value)} required />
+
+                    <input type="submit" value="Submit" onClick={handleSubmit} />
                 </form>
             </div>
         </>

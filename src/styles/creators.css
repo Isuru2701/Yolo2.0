@@ -1,37 +1,62 @@
 .cc-dashboard-container {
-    background-color: var(--base-black);
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    width:100%;
-    min-height: 100vh;
-    color: var(--highlight-white);
+  background-color: var(--base-black);
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  color: var(--highlight-white);
 }
 
 .cc-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem 2rem;
-    width: 90%;
-    background-color: var(--base-grey);
-    color: var(--highlight-white);
-    margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 2rem;
+  width: 90%;
+  background-color: var(--base-grey);
+  color: var(--highlight-white);
+  margin: 10px;
 }
 
 .cc-header h1 {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .cc-header span {
-    display: flex;
-    justify-content: flex-start;
-    width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  width: 50%;
 }
 
 .cc-header button {
-    display:flex;
-    background-color: var(--sharp-accent);
+  display: flex;
+  background-color: var(--sharp-accent);
+  color: var(--base-black);
+  padding: 0.5rem;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  margin: 0.5rem;
+  cursor: pointer;
+}
+
+.choice-button {
+  display: flex;
+  background-color: var(--sharp-accent);
+  color: var(--base-black);
+  padding: 0.5rem;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  margin: 0.5rem;
+  cursor: pointer;
+  width: 50%;
+}
+
+.choice-button-pressed {
+    display: flex;
+    background-color: var(--light-blue);
     color: var(--base-black);
     padding: 0.5rem;
     align-items: center;
@@ -39,74 +64,75 @@
     border-radius: 5px;
     margin: 0.5rem;
     cursor: pointer;
-    
-}
-.cc-header img{
-    width: 30%;
-    object-fit: contain;
-    border-radius: 50%;
-    margin: 0.5rem;
+    width: 50%;
+  }
+  
+
+.cc-header img {
+  width: 30%;
+  object-fit: contain;
+  border-radius: 50%;
+  margin: 0.5rem;
 }
 
 .cc-content-container {
-
-    margin:10px;
-    background-color: var(--base-grey);
-    width:90%;
-
+  margin: 10px;
+  background-color: var(--base-grey);
+  width: 90%;
 }
 
-.cc-content-container h1{
-    /*center*/
-    text-align: center;
-
+.cc-content-container h1 {
+  /*center*/
+  text-align: center;
 }
 
 .cc-header .stripe-button {
-    background-color: var(--highlight-white);
-    color: var(--highlight-white);
-    border: none;
-    border-radius: 5px;
-
+  background-color: var(--highlight-white);
+  color: var(--highlight-white);
+  border: none;
+  border-radius: 5px;
 }
 
 .cc-header .stripe-button img {
-    width: 30%;
-    justify-content: center;
-    
+  width: 30%;
+  justify-content: center;
 }
 
-.cc-card{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    width: 100%;
-    background-color: var(--base-grey);
-    color: var(--highlight-white);
+.cc-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  width: 100%;
+  background-color: var(--base-grey);
+  color: var(--highlight-white);
 }
 
 .boost-history {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    width: 90%;
-    background-color: var(--base-grey);
-    color: var(--highlight-white);
-    margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  width: 90%;
+  background-color: var(--base-grey);
+  color: var(--highlight-white);
+  margin: 10px;
 }
 
 .cc-popover {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    width: 90%;
-    background-color: var(--base-black);
-    color: var(--highlight-white);
-    margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  width: 90%;
+  background-color: var(--base-black);
+  color: var(--highlight-white);
+  margin: 10px;
+}
+
+.cc-dashboard-container input {
+  width: 60%;
 }
