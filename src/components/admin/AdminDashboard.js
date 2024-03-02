@@ -1,7 +1,11 @@
 import React from "react";
 import '../../styles/admin.css';
 import ChartComponent from "../elements/Chart";
+import Cookies from "js-cookie";
 export default function AdminDashboard() {
+    if (!Cookies.get('admin')) {
+        window.location.href = "/admin/";
+    }
     return (
         <>
             <div className='admin-dashboard-container'>

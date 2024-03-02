@@ -53,6 +53,7 @@ export default function AdminLogin() {
                         <input type="password" id="password" name="password" required onChange={(e) => setPassword(e.target.value)} />
                     </div>
                     <button className='login-button' type="submit">Login</button>
+                    {error && <p className='error-message'>{error}</p>}
                     <br></br>
                 </form>
 
