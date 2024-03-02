@@ -1,15 +1,39 @@
 import React, { useState } from "react";
 import '../../styles/user.css';
-export default function AdminLogin() {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+import Cookies from 'js-cookie';
 
-    const handleLogin = (event) => {
+export default function AdminLogin() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+
+    const handleAdminLogin = async (event) => {
         event.preventDefault(); // Prevent the form from refreshing the page
 
-        // Here you can handle the login logic (e.g., send the username and password to your server)
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/admin/login`, {
+                method: "POST",
+                mode: "cors",
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ "email": email, "password": password })
+            });
 
-        console.log(`Logging in with username: ${username} and password: ${password}`);
+            if (response.ok) {
+                Cookies.set("email", email)// Update cookie or perform any other successful login action
+                Cookies.set('admin', true)
+                //redirect
+                window.location.href = "/admin";
+            } else {
+                setError("Invalid email or password. Please try again.");
+            }
+        } catch (error) {
+            setError("An unknown error occurred. Please try again later.");
+        }
+
+        console.log(`Logging in with email: ${email} and password: ${password}`);
     };
 
     return (
@@ -19,10 +43,10 @@ export default function AdminLogin() {
                 <div className="login-section">
                     <h2 className="registration-heading">Admin</h2>
                 </div>
-                <form className="registration-form" onSubmit={handleLogin}>
+                <form className="registration-form" onSubmit={handleAdminLogin}>
                     <div className="form-group">
                         <label htmlFor="email">Email</label>
-                        <input type="email" id="email" name="email" required onChange={(e) => setUsername(e.target.value)} />
+                        <input type="email" id="email" name="email" required onChange={(e) => setEmail(e.target.value)} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Password</label>
