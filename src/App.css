@@ -1,4 +1,3 @@
-
 .landing-container {
   background-color: var(--base-black);
   min-width: 100%;
@@ -8,43 +7,66 @@
   align-items: flex-start;
   flex-direction: column;
   flex-grow: 1;
- 
 }
-      
+
 .landing-title {
-  float: left;
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100wv;
+  float:left;
+  /* text-align: center; */
   margin-left: 100px;
   min-height: 100vh;
 }
 
+.landing-title > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* width: 100%; */
+}
+
+.landing-title > div > div {
+  margin-left: 20px;
+}
+
+.landing-title p {
+  color: var(--accent);
+}
 .landing-title h1 {
   font-size: 100px;
-  font-weight: 700; 
+  font-weight: 700;
   overflow: hidden; /* Ensures the content is only shown within the .landing-title */
-  border-right: .15em solid var(--tone-highlight);  /* The typwriter cursor */
-  white-space: nowrap;  /* Keeps the content on a single line */
-  margin: 0 auto;  /* Gives it a width */
-  letter-spacing: .15em;  /* Adjust as needed */
+  border-right: 0.15em solid var(--tone-highlight); /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives it a width */
+  letter-spacing: 0.15em; /* Adjust as needed */
   color: var(--sharp-accent);
-  animation: 
-    typing 2.0s steps(40, end),
-    blink-caret .75s step-end infinite;
-  
+  animation: typing 2s steps(40, end), blink-caret 0.75s step-end infinite;
 }
 
 /* The typing animation */
 @keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 /* The typewriter cursor effect */
 @keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: var(--tone-highlight); }
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--tone-highlight);
+  }
 }
 
 @media (max-width: 600px) {
@@ -57,17 +79,17 @@
   }
 }
 
-.text_area{
+.text_area {
   height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    flex-wrap: wrap;
-    margin-left: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-left: 200px;
 }
 
-#prompt{
+#prompt {
   margin-left: 600px;
   display: flex;
   justify-content: center;
@@ -77,33 +99,31 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  
 }
 
-.button{
+.button {
   display: inline-block;
 }
 
-#obscure{
-  background:var(--sharp-pink);
+#obscure {
+  background: var(--sharp-pink);
   text-align: center;
   border-radius: 50px;
   text-decoration: solid;
 }
 
-#limit-to{
-  background:var(--sharp-pink);
+#limit-to {
+  background: var(--sharp-pink);
   text-align: center;
   border-radius: 50px;
 }
 
-#Submit{
-  background:var(--sharp-pink);
+#Submit {
+  background: var(--sharp-pink);
   text-align: center;
   border-radius: 50px;
-
 }
 
-#write{
+#write {
   color: plum;
 }
