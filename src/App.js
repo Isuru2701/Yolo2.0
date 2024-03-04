@@ -3,7 +3,6 @@ import { Select, MenuItem } from '@mui/material';
 import { InputLabel } from '@mui/material';
 import { useState } from 'react';
 import { Grid, Paper } from '@mui/material';
-import { Modal } from 'react-bootstrap';
 import Cookies from 'js-cookie';
 import { GridComponent } from './components/elements/GridComponent';
 
@@ -463,8 +462,3 @@ function App() {
 
 export default App;
 
-
-
-function infoModal() {
-  <Modal></Modal>
-}

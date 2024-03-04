@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { Grid, Paper, Modal, Box, Typography } from '@mui/material';
+import { IconButton, Divider } from '@mui/material';
+import { Close, Google } from '@mui/icons-material';
+import { Button } from '@mui/material';
+import { Link as LinkIcon } from '@mui/icons-material';
 
 export function GridComponent({ media, type }) {
     const [open, setOpen] = useState(false);
@@ -15,6 +19,7 @@ export function GridComponent({ media, type }) {
     return (
         <>
             <Grid container spacing={3} width={'90%'}>
+
                 {media.map((item, index) => (
                     <Grid item xs={12} sm={6} md={4} lg={3} id={index} key={index} style={{ width: '200px', height: '300px' }}>
                         <Paper style={{ width: '100%', height: '100%', position: 'relative' }} onClick={() => handleOpen(item)}>
@@ -34,21 +39,63 @@ export function GridComponent({ media, type }) {
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}
             >
-                <Box sx={{ width: 400, padding: 4, bgcolor: 'background.paper' }}>
+                <Box sx={{
+                    width: '80%',
+                    maxHeight: '80%',
+                    overflowY: 'auto', // Add overflowY property to enable scrolling
+                    backgroundColor: 'var(--base-black)',
+                    p: 4,
+                }}>
+                    <Box sx={{
+                        position: 'absolute',
+                        top: 10,
+                        right: 10,
+                        zIndex: 999,
+                    }}>
+                        <IconButton onClick={handleClose} color="inherit">
+                            <Close />
+                        </IconButton>
+                    </Box>
                     {activeItem && (
                         <>
-                            <Typography id="modal-modal-title" variant="h6" component="h2">
-                                {activeItem.title}
-                            </Typography>
-                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                {activeItem.overview}
-                            </Typography>
-                            <img src={activeItem.image_link} alt={activeItem.title} />
+                            <div style={{ width: "100%" }}>
+                                <Typography variant="h2" component="h2" gutterBottom style={{ color: 'white', textAlign: 'center', width: '100%' }}>
+                                    {activeItem.title}
+                                </Typography>
+                            </div>
+
+                            <br />
+                            <div>
+                                <img src={activeItem.image_link} alt={activeItem.title} style={{ color: 'white', width: '50%', maxHeight: "20%", borderRadius: 8 }} />
+                                <Divider />
+                                <Typography variant="body1" color="text.secondary" component="p" sx={{ mt: 2, textAlign: 'center', color: 'white' }}>
+                                    {activeItem.overview}
+                                </Typography>
+                            </div>
+
+                            <Box display="flex" justifyContent="center">
+                                <Button color="primary" aria-label="More info">
+                                    <LinkIcon />
+                                    More Info
+                                </Button>
+
+                                <Button color="primary" aria-label="More info" onClick={() => window.open('https://www.google.com/search?q='+activeItem.title, '_blank')}>
+                                    <Google />
+                                    Search on Google
+                                </Button>
+                            </Box>
+
                         </>
                     )}
                 </Box>
             </Modal>
+
         </>
     );
 }
