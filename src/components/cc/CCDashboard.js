@@ -55,6 +55,7 @@ export default function CCDashboard() {
                     <span>
                         <button onClick={() => changeContent('spotify')} ><img src='spotify-icon.svg' /> Spotify</button>
                         <button onClick={() => changeContent('youtube')}><img src='youtube-icon.svg' /> Youtube</button>
+                        <button onClick={() => window.location.href='/creators/boost'}><img src='boost-icon.svg' />Boost</button>
                         <button className='stripe-button'><center><img src='stripe-icon.svg' /></center></button>
                     </span>
                 </div>
@@ -66,12 +67,12 @@ export default function CCDashboard() {
 
                 <div className='boost-history'>
                     <div className='task-list'>
-                        <Task title='Task 1' link='https://www.google.com' boost />
-                        <Task title='Task 2' link='https://www.google.com' boost />
-                        <Task title='Task 3' link='https://www.google.com' boost />
-                        <Task title='Task 3' link='https://www.google.com' boost />
-                        <Task title='Task 3' link='https://www.google.com' boost />
-                        <Task title='Task 3' link='https://www.google.com' boost />
+                        <Task title='Boost 1' link='https://www.google.com' boost />
+                        <Task title='Boost 2' link='https://www.google.com' boost />
+                        <Task title='Boost 3' link='https://www.google.com' boost />
+                        <Task title='Boost 3' link='https://www.google.com' boost />
+                        <Task title='Boost 3' link='https://www.google.com' boost />
+                        <Task title='Boost 3' link='https://www.google.com' boost />
                     </div>
 
                 </div>

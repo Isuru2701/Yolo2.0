@@ -78,9 +78,10 @@ export function GridComponent({ media, type }) {
                                     {activeItem.overview}
                                 </Typography>
                             </div>
+                            <br/>
 
                             <Box display="flex" justifyContent="center">
-                                <Button color="primary" aria-label="More info">
+                                <Button color="primary" aria-label="More info" onClick={() => window.open(activeItem.search_link, '_blank')}>
                                     <LinkIcon />
                                     More Info
                                 </Button>
