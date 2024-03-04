@@ -1,7 +1,10 @@
 import React from "react";
 import Task from "./elements/Task";
 import '../styles/collection.css';
+import { Cookie } from "@mui/icons-material";
+import Cookies from "js-cookie";
 export default function Collection() {
+
     return (
         <div className='collection-container'>
             <div className='content-main'>
