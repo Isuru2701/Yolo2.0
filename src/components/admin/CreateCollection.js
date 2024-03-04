@@ -7,27 +7,27 @@ export default function CreateCollection() {
     const [contents, setContents] = useState([{ title: "", link: "" }]);
     const [description, setDescription] = useState("");
     const [duration, setDuration] = useState("");
-    const [keywords, setKeywords] = useState("");
+    const [keywordsList, setKeywords] = useState("");
     const [title, setTitle] = useState("");
     const [premium, setPremium] = useState(false);
 
     const handleCreate = async (event) => {
         event.preventDefault();
 
-        const keywordsList = keywords.split(',');
+        const keywords = keywordsList.split(',');
 
        
-        console.log({ contents, description, duration, keywordsList, title, premium });
+        console.log({ contents, description, duration, keywords, title, premium });
         const formData = {
             contents,
             description,
             duration,
-            keywordsList,
+            keywords,
             title,
             premium
         };
 
-        const response = await fetch('/admin/collections/create', {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/collections`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -102,7 +102,7 @@ export default function CreateCollection() {
                 <label>
                     Keywords:
                 </label>
-                <input type="text" placeholder='comma-separated,like,this' value={keywords} onChange={e => setKeywords(e.target.value)} />
+                <input type="text" placeholder='comma-separated,like,this' value={keywordsList} onChange={e => setKeywords(e.target.value)} />
 
                 <label>
                     Collection Title:
