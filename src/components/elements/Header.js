@@ -4,7 +4,7 @@ import '../../styles/header.css';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
-import { AppRegistrationOutlined, DeveloperMode, ExitToApp, LoginOutlined, LogoDev, MenuOutlined, MovieCreationRounded, Person2Outlined, VerifiedUserOutlined, WorkspacePremiumOutlined } from '@mui/icons-material';
+import { AdminPanelSettings, AppRegistrationOutlined, DeveloperMode, ExitToApp, LoginOutlined, LogoDev, MenuOutlined, MovieCreationRounded, Person2Outlined, VerifiedUserOutlined, WorkspacePremiumOutlined } from '@mui/icons-material';
 import Cookies from 'js-cookie';
 
 export default function Header() {
@@ -26,6 +26,17 @@ export default function Header() {
     const handleLogout = async () => {
         Cookies.remove('email');
         window.location.href = '/login';
+
+        if (Cookies.get('admin')) {
+            Cookies.remove('admin');
+        }
+
+        if (Cookies.get('premium')) {
+            Cookies.remove('premium');
+        }
+        if (Cookies.get('cc')) {
+            Cookies.remove('cc');
+        }
     }
 
 
@@ -51,12 +62,13 @@ export default function Header() {
                     <MenuItem icon={<HomeOutlinedIcon />} href='/'> Home</MenuItem>
                     {!Cookies.get('email') && <MenuItem icon={<LoginOutlined />} href='/login'>Login</MenuItem>}
                     {!Cookies.get('email') && <MenuItem icon={<Person2Outlined />} href='/register'>Register</MenuItem>}
-                    {Cookies.get('email') && <MenuItem icon={<VerifiedUserOutlined />} href='/profile'>Profile</MenuItem>}
+                    {Cookies.get('email') && !Cookies.get('admin') && <MenuItem icon={<VerifiedUserOutlined />} href='/profile'>Profile</MenuItem>}
                     <MenuItem icon={<WorkspacePremiumOutlined />} href='/checkout?t=premium'>Premium</MenuItem>
+                    {Cookies.get('admin') && <MenuItem icon={<AdminPanelSettings />} href='/admin/dashboard'>Admin</MenuItem>}
                     <MenuItem icon={<MovieCreationRounded />} href='/creators'>Creators</MenuItem>
                     <MenuItem icon={<LogoDev />} href='/developers'>Developers</MenuItem>
                     {Cookies.get('email') && <MenuItem icon={<ExitToApp />} onClick={handleLogout}>Logout</MenuItem>}
-                </Menu>
+                    </Menu>
             </Sidebar>
         </div>
     );

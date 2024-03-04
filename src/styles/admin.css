@@ -55,12 +55,18 @@
     
 }
 
+.requests-container {
+    width: 100%;
+    background-color: var(--base-grey);
+
+}
+
 .requests-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     padding: 1rem 2rem;
-    width: 100%;
+    width: 0%;
     background-color: var(--base-grey);
     color: var(--highlight-white);
     /* margin: 10px; */
@@ -73,4 +79,26 @@
     padding: 1rem;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 25vw;
+}
+
+.requests-container button {
+    background-color: var(--light-blue);
+    color: var(--base-black);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    margin: 0.5rem;
+    cursor: pointer;
+
+}
+
+.requests-container .reject {
+    background-color: var(--deep-pink);
+    color: var(--highlight-white);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    margin: 0.5rem;
+    cursor: pointer;
 }
