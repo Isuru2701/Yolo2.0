@@ -1,5 +1,6 @@
 import './App.css';
 import { Select, MenuItem } from '@mui/material';
+import {InputLabel} from '@mui/material';
 
 function App() {
   return (
@@ -28,21 +29,31 @@ function App() {
       <br />
       <br />
       <br />
-      <div className='text_area' id='chat' style = {{zIndex:20}}>
+      <div className='text_area' id='chat' style={{ zIndex: 20 }}>
         <br />
+        <h1 style= {{textAlign:'left', color: 'white'}}>Whats on your mind?</h1>
         <textarea rows="4" cols="50"></textarea>
 
-        <div className='buttons'>          
+        <div className='buttons'>
+          <InputLabel id="demo-simple-select-label" sx={{
+            color: 'var(--tone-highlight)'
+          }}>Limit to</InputLabel>
           <Select
+            labelId="demo-simple-select-label"
             label='Limit'
             className="landing-button"
+            sx = {{
+              color: 'var(--tone-highlight)',
+              padding: '5px'
+            }}
+          
           >
-            <MenuItem value="None">None</MenuItem>
-            <MenuItem value="Movies">Movies</MenuItem>
-            <MenuItem value="TV">TV</MenuItem>
-            <MenuItem value="Anime">Anime</MenuItem>
-            <MenuItem value="Songs">Songs</MenuItem>
-            <MenuItem value="Books">Books</MenuItem>
+            <MenuItem value="None" className="menu-item">None</MenuItem>
+            <MenuItem value="Movies" className="menu-item">Movies</MenuItem>
+            <MenuItem value="TV"className="menu-item">TV</MenuItem>
+            <MenuItem value="Anime" className="menu-item">Anime</MenuItem>
+            <MenuItem value="Songs" className="menu-item">Songs</MenuItem>
+            <MenuItem value="Books" className="menu-item">Books</MenuItem>
           </Select>
           <button className="landing-button submit">Submit</button>
 

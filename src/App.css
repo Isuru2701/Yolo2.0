@@ -135,6 +135,10 @@
   display: inline-block;
 }
 
+.menu-item {
+  color: var(--tone-highlight);
+}
+
 #obscure {
   background: var(--sharp-pink);
   text-align: center;
@@ -153,6 +157,7 @@
   text-align: center;
   color: var(--base-black); 
   border: none;
+  padding: 20px;
 
 }
 
