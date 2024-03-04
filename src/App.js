@@ -1,4 +1,5 @@
 import './App.css';
+import { Select, MenuItem } from '@mui/material';
 
 function App() {
   return (
@@ -15,23 +16,35 @@ function App() {
         <br />
         <h6 style={{ color: 'white', textAlign: 'center' }}> Ready to Dive into a World of Endless Entertainment? Let's Get Started!</h6>
         <br />
-        <p style={{ border: 'none', textAlign: 'center', backgroundColor: 'var(--deep-blue)', borderRadius: '20px', padding: '30px', color: 'var(--highlight-white)', zIndex: 20}}>YOLO is a media recommendation system that helps you find your next obsession, like you're asking a friend!</p>
+        <p style={{ border: 'none', textAlign: 'center', backgroundColor: 'var(--deep-blue)', borderRadius: '20px', padding: '30px', color: 'var(--highlight-white)', zIndex: 20 }}>YOLO is a media recommendation system that helps you find your next obsession, like you're asking a friend!</p>
+        <button class="landing-button" onClick={() => window.location.href = '/#chat'}> Lets chat! </button>
       </div>
       {/* 
       <div className='prompts'> */}
-      <center><button id="prompt" onClick={() => window.location.href = '/#chat'}> Lets chat! </button></center>
+
       {/* </div> */}
 
-      <div className='text_area' id='chat'>
-        <h2 id='write'>Write your prompt here:</h2>
+
+      <br />
+      <br />
+      <br />
+      <div className='text_area' id='chat' style = {{zIndex:20}}>
         <br />
         <textarea rows="4" cols="50"></textarea>
 
-        <div className='buttons'>
-
-          <button id="obscure">obscure</button>
-          <button id="limit-to">Limit to</button>
-          <button id="Submit">Submit</button>
+        <div className='buttons'>          
+          <Select
+            label='Limit'
+            className="landing-button"
+          >
+            <MenuItem value="None">None</MenuItem>
+            <MenuItem value="Movies">Movies</MenuItem>
+            <MenuItem value="TV">TV</MenuItem>
+            <MenuItem value="Anime">Anime</MenuItem>
+            <MenuItem value="Songs">Songs</MenuItem>
+            <MenuItem value="Books">Books</MenuItem>
+          </Select>
+          <button className="landing-button submit">Submit</button>
 
         </div>
 
