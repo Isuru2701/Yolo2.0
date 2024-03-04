@@ -2,7 +2,9 @@ import './App.css';
 import { Select, MenuItem } from '@mui/material';
 import { InputLabel } from '@mui/material';
 import { useState } from 'react';
-
+import { Grid, Paper } from '@mui/material';
+import { Modal } from 'react-bootstrap';
+import Cookies from 'js-cookie';
 
 function App() {
   const [error, setErorr] = useState('');
@@ -10,12 +12,12 @@ function App() {
   //check the text area for input
   const [text, setText] = useState("");
   const [limit, setLimit] = useState('');
-  const [media, setMedia] = useState({})
-  const [movies, setMovies] = useState({});
-  const [tv, setTV] = useState({});
-  const [songs, setSongs] = useState({});
-  const [books, setBooks] = useState({});
-  const [anime, setAnime] = useState({});
+  const [media, setMedia] = useState([])
+  const [movies, setMovies] = useState([]);
+  const [tv, setTV] = useState([]);
+  const [songs, setSongs] = useState([]);
+  const [books, setBooks] = useState([]);
+  const [anime, setAnime] = useState([]);
 
 
   const handleFetchKeywords = async (event) => {
@@ -125,8 +127,14 @@ function App() {
         var data = await songResponse.json();
         console.log(data);
 
+        var cap = 5;
         //process the data and put into media
-        const transformedData = data.map(item => ({
+        if (Cookies.get('premium')) {
+          var cap = 20;
+        }
+
+
+        const transformedData = data.slice(0, cap).map(item => ({
           search_link: item.video_url,
           image_link: item.thumbnail,
           title: item.title,
@@ -160,7 +168,15 @@ function App() {
         var data = await moviesResponse.json();
         console.log(data);
 
-        const transformedData = data.map(item => ({
+
+        var cap = 5;
+        //process the data and put into media
+        if (Cookies.get('premium')) {
+          var cap = 20;
+        }
+
+
+        const transformedData = data.slice(0, cap).map(item => ({
           search_link: "https://www.themoviedb.org/movie/" + item.id,
           image_link: item.poster_path,
           title: item.title,
@@ -197,7 +213,15 @@ function App() {
         var data = await tvResponse.json();
         console.log(data);
 
-        const transformedData = data.map(item => ({
+
+        var cap = 5;
+        //process the data and put into media
+        if (Cookies.get('premium')) {
+          var cap = 20;
+        }
+
+
+        const transformedData = data.slice(0, cap).map(item => ({
           search_link: "https://www.themoviedb.org/tv/" + item.id,
           image_link: item.poster_path,
           title: item.title,
@@ -217,8 +241,10 @@ function App() {
 
   }
 
-  const handleFetchBooks = async (keywords) => {
-    console.log('fetching songs');
+  const handleFetchBooks = async (keywords) => { //TODO: books isnt working, fix it 
+    console.log('fetching books');
+    console.log(keywords);
+
 
     try {
       const booksResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/books?${keywords}&media_type=song`, {
@@ -235,7 +261,15 @@ function App() {
         var data = await booksResponse.json();
         console.log(data);
 
-        const transformedData = data.map(item => ({
+
+        var cap = 5;
+        //process the data and put into media
+        if (Cookies.get('premium')) {
+          var cap = 20;
+        }
+
+
+        const transformedData = data.slice(0, cap).map(item => ({
           search_link: item.id,
           image_link: item.poster_path,
           title: item.title,
@@ -274,7 +308,15 @@ function App() {
         var data = await animeResponse.json();
         console.log(data);
 
-        const transformedData = data.map(item => ({
+
+        var cap = 5;
+        //process the data and put into media
+        if (Cookies.get('premium')) {
+          var cap = 20;
+        }
+
+
+        const transformedData = data.slice(0, cap).map(item => ({
           search_link: item.moreinfo_url,
           image_link: item.thumbnail,
           title: item.title,
@@ -312,7 +354,15 @@ function App() {
         var data = await animeMovieResponse.json();
         console.log(data);
 
-        const transformedData = data.map(item => ({
+
+        var cap = 5;
+        //process the data and put into media
+        if (Cookies.get('premium')) {
+          var cap = 20;
+        }
+
+
+        const transformedData = data.slice(0, cap).map(item => ({
           search_link: item.moreinfo_url,
           image_link: item.thumbnail,
           title: item.title,
@@ -389,8 +439,18 @@ function App() {
           </Select>
           <button className="landing-button submit" onClick={handleFetchKeywords}>Submit</button>
           {error && <p className='error-message'>{error}</p>}
+
+
         </div>
 
+
+      </div>
+      <div style={{ width: '90%' }}>
+        {movies.length > 0 && gridComponent(movies, "movies")}
+        {tv.length > 0 && gridComponent(tv, "tv")}
+        {songs.length > 0 && gridComponent(songs, 'songs')}
+        {books.length > 0 && gridComponent(books, 'books')}
+        {anime.length > 0 && gridComponent(anime, 'anime')}
       </div>
 
 
@@ -401,25 +461,7 @@ function App() {
 export default App;
 
 
-function gridComponent(media) {
-  return (
-    <Grid container spacing={3}>
-      {movies.map((movie, index) => (
-        <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-          <Paper>
-            {movie.name}
-          </Paper>
-        </Grid>
-      ))}
-      {tv.map((show, index) => (
-        <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-          <Paper>
-            {show.name}
-          </Paper>
-        </Grid>
-      ))}
-      {/* ... other states */}
-    </Grid>
-  )
 
+function infoModal() {
+  <Modal></Modal>
 }
