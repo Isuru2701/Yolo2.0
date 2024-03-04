@@ -80,14 +80,15 @@ export default function CreateCollection() {
                 <input type="text" placeholder='comma-separated,like,this' value={keywords} onChange={e => setKeywords(e.target.value)} />
 
                 <label>
-                    Title:
+                    Collection Title:
                 </label>
                 <input type="text" value={title} onChange={e => setTitle(e.target.value)} />
 
                 <label>
                     Premium: <GoldCheckbox checked={premium} sx={{ color: "var(--gold)" }} onChange={e => setPremium(e.target.checked)} />
                 </label>
-
+                <br />
+                <br />
 
                 <input type="submit" value="Submit" />
             </form>

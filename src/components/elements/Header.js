@@ -63,10 +63,10 @@ export default function Header() {
                     {!Cookies.get('email') && <MenuItem icon={<LoginOutlined />} href='/login'>Login</MenuItem>}
                     {!Cookies.get('email') && <MenuItem icon={<Person2Outlined />} href='/register'>Register</MenuItem>}
                     {Cookies.get('email') && !Cookies.get('admin') && <MenuItem icon={<VerifiedUserOutlined />} href='/profile'>Profile</MenuItem>}
-                    <MenuItem icon={<WorkspacePremiumOutlined />} href='/checkout?t=premium'>Premium</MenuItem>
+                    {!Cookies.get('admin') && <MenuItem icon={<WorkspacePremiumOutlined />} href='/checkout?t=premium'>Premium</MenuItem>}
                     {Cookies.get('admin') && <MenuItem icon={<AdminPanelSettings />} href='/admin/dashboard'>Admin</MenuItem>}
-                    <MenuItem icon={<MovieCreationRounded />} href='/creators'>Creators</MenuItem>
-                    <MenuItem icon={<LogoDev />} href='/developers'>Developers</MenuItem>
+                    {!Cookies.get('admin') && <MenuItem icon={<MovieCreationRounded />} href='/creators'>Creators</MenuItem>}
+                    {!Cookies.get('admin') && <MenuItem icon={<LogoDev />} href='/developers'>Developers</MenuItem>}
                     {Cookies.get('email') && <MenuItem icon={<ExitToApp />} onClick={handleLogout}>Logout</MenuItem>}
                     </Menu>
             </Sidebar>
