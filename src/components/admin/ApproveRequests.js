@@ -37,6 +37,8 @@ export default function ApproveRequests() {
             const reportData = [request.id, request.name];
             tableRows.push(reportData);
         });
+        const date = new Date();
+        const dateString = `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`;
 
         doc.text("Pending Requests Report", 14, 15);
         doc.text(`Date: ${dateString}`, 14, 25); // Add the date to the report
