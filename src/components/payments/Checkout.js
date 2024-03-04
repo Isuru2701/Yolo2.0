@@ -1,8 +1,44 @@
-import React from "react";
+import React, {useState} from "react";
 import '../../styles/checkout.css';
+import { useLocation } from "react-router";
 
 export default function Checkout() {
+    
+    const [type, setType] = useState('premium');
+
+    const location = useLocation();
+
+    
+    const query = new URLSearchParams(location.search);
+    const product = query.get('t');
+
+    const handlePayment = async (event) => {
+        event.preventDefault(); // Prevent the form from refreshing the page
+
+        //fetch payment
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/checkout`, {
+                method: "POST",
+                mode: "cors",
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ "product": product })
+            });
+
+            if (response.ok) {
+                //redirect
+                window.location.href = "/success";
+            } else {
+            }
+        } catch (error) {
+        }
+    }
+
     return (
+
+        
 
         <div className='checkout-container'>
             <div className='item-info-container'>

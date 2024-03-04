@@ -6,14 +6,26 @@ import { useState } from 'react';
 
 function App() {
   const [error, setErorr] = useState('');
-  const [text, setText] = useState('');
+
+  //check the text area for input
+  const [text, setText] = useState("");
   const [limit, setLimit] = useState('');
-  const [media, setMedia] = useState({ 'url': '', 'title': '', 'type': '', 'premium': false })
+  const [media, setMedia] = useState({})
+  const [movies, setMovies] = useState({});
+  const [tv, setTV] = useState({});
+  const [songs, setSongs] = useState({});
+  const [books, setBooks] = useState({});
+  const [anime, setAnime] = useState({});
+
+
   const handleFetchKeywords = async (event) => {
 
     if (text === '') {
       setErorr('Please enter something');
       return;
+    }
+    else {
+      setErorr('');
     }
 
     event.preventDefault();
@@ -32,40 +44,51 @@ function App() {
 
       if (response.ok) {
         //print response contents
-        var data = response.json();
+        var data = await response.json();
         console.log(data);
 
         //stringify the list
-        let string = data.join(', ');
+        let keywords = data.join(', ');
 
         //check limit to is set
-        handleFetchSongs(string);
-        handleFetchMovies(string);
-        handleFetchTV(string);
-        handleFetchBooks(string);
-        handleFetchAnime(string);
+
+        console.log(keywords);
 
 
         if (limit === 'movies') {
-          handleFetchMovies(string);
+          handleFetchMovies(keywords);
 
         }
         else if (limit === 'tv') {
-          handleFetchTV(string);
+          handleFetchTV(keywords);
 
         }
         else if (limit === 'songs') {
-          handleFetchSongs(string);
+          handleFetchSongs(keywords);
 
         }
         else if (limit === 'anime') {
-          handleFetchAnime(string);
-          handleFetchAnimeMovie(string);
+          handleFetchAnime(keywords);
+          handleFetchAnimeMovie(keywords);
 
         }
         else if (limit === 'books') {
-          handleFetchBooks(string);
+          handleFetchBooks(keywords);
 
+        }
+        else {
+          console.log('--------------');
+          handleFetchSongs(keywords);
+          console.log('--------------');
+          handleFetchMovies(keywords);
+          console.log('--------------');
+          handleFetchTV(keywords);
+          console.log('--------------');
+          handleFetchBooks(keywords);
+          console.log('--------------');
+          handleFetchAnime(keywords);
+          console.log('--------------');
+          handleFetchAnimeMovie(keywords);
         }
 
 
@@ -99,10 +122,16 @@ function App() {
 
       if (songResponse.ok) {
         //print response contents
-        var data = songResponse.json();
+        var data = await songResponse.json();
         console.log(data);
 
-
+        //process the data and put into media
+        const transformedData = data.map(item => ({
+          search_link: item.video_url,
+          image_link: item.thumbnail,
+          title: item.title,
+        }));
+        setSongs(songs => [...songs, ...transformedData]);
 
       } else {
         setErorr("Sorry, we didn't quite catch that. try");
@@ -117,7 +146,7 @@ function App() {
     console.log('fetching movies');
 
     try {
-      const moviesResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/movies?${keywords}&media_type=movie`, {
+      const moviesResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/tv?${keywords}&media_type=movie`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -128,8 +157,16 @@ function App() {
 
       if (moviesResponse.ok) {
         //print response contents
-        var data = moviesResponse.json();
+        var data = await moviesResponse.json();
         console.log(data);
+
+        const transformedData = data.map(item => ({
+          search_link: "https://www.themoviedb.org/movie/" + item.id,
+          image_link: item.poster_path,
+          title: item.title,
+          overview: item.overview
+        }));
+        setMovies(movies => [...movies, ...transformedData]);
 
 
 
@@ -157,8 +194,17 @@ function App() {
 
       if (tvResponse.ok) {
         //print response contents
-        var data = tvResponse.json();
+        var data = await tvResponse.json();
         console.log(data);
+
+        const transformedData = data.map(item => ({
+          search_link: "https://www.themoviedb.org/tv/" + item.id,
+          image_link: item.poster_path,
+          title: item.title,
+          overview: item.overview
+        }));
+        setTV(tv => [...tv, ...transformedData]);
+
 
 
 
@@ -175,7 +221,7 @@ function App() {
     console.log('fetching songs');
 
     try {
-      const booksResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/books${keywords}&media_type=song`, {
+      const booksResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/books?${keywords}&media_type=song`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -186,8 +232,17 @@ function App() {
 
       if (booksResponse.ok) {
         //print response contents
-        var data = booksResponse.json();
+        var data = await booksResponse.json();
         console.log(data);
+
+        const transformedData = data.map(item => ({
+          search_link: item.id,
+          image_link: item.poster_path,
+          title: item.title,
+          overview: item.overview
+        }));
+        setTV(tv => [...tv, ...transformedData]);
+
 
 
 
@@ -216,8 +271,17 @@ function App() {
 
       if (animeResponse.ok) {
         //print response contents
-        var data = animeResponse.json();
+        var data = await animeResponse.json();
         console.log(data);
+
+        const transformedData = data.map(item => ({
+          search_link: item.moreinfo_url,
+          image_link: item.thumbnail,
+          title: item.title,
+          overview: item.synopsis
+        }));
+        setAnime(anime => [...anime, ...transformedData]);
+
 
 
 
@@ -245,8 +309,17 @@ function App() {
 
       if (animeMovieResponse.ok) {
         //print response contents
-        var data = animeMovieResponse.json();
+        var data = await animeMovieResponse.json();
         console.log(data);
+
+        const transformedData = data.map(item => ({
+          search_link: item.moreinfo_url,
+          image_link: item.thumbnail,
+          title: item.title,
+          overview: item.synopsis
+        }));
+        setAnime(anime => [...anime, ...transformedData]);
+
 
 
 
@@ -291,7 +364,7 @@ function App() {
       <div className='text_area' id='chat' style={{ zIndex: 20 }}>
         <br />
         <h1 style={{ textAlign: 'left', color: 'white' }}>Whats on your mind?</h1>
-        <textarea rows="4" cols="50" onChange={(e) => setText(e.target.value)}></textarea>
+        <textarea id="prompt" rows="4" cols="50" onChange={(e) => setText(e.target.value)}></textarea>
 
         <div className='buttons'>
           <InputLabel id="demo-simple-select-label" sx={{
@@ -319,8 +392,34 @@ function App() {
         </div>
 
       </div>
+
+
     </div>
   );
 }
 
 export default App;
+
+
+function gridComponent(media) {
+  return (
+    <Grid container spacing={3}>
+      {movies.map((movie, index) => (
+        <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+          <Paper>
+            {movie.name}
+          </Paper>
+        </Grid>
+      ))}
+      {tv.map((show, index) => (
+        <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+          <Paper>
+            {show.name}
+          </Paper>
+        </Grid>
+      ))}
+      {/* ... other states */}
+    </Grid>
+  )
+
+}

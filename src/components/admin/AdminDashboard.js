@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import '../../styles/admin.css';
 import ChartComponent from "../elements/Chart";
 import Cookies from "js-cookie";
 import ManageCollections from "./ManageCollections";
 export default function AdminDashboard() {
-    if (!Cookies.get('admin')) {
-        window.location.href = "/admin/";
-    }
+
+    
     return (
         <>
             <div className='admin-dashboard-container'>
@@ -19,10 +18,10 @@ export default function AdminDashboard() {
 
 
                 <div className='admin-actions'>
-                    <button onClick={() => window.location.href='/admin/requests'}>
+                    <button onClick={() => window.location.href = '/admin/requests'}>
                         view boost requests
                     </button>
-                    <button onClick={() => window.location.href='/admin/collections/create'}>
+                    <button onClick={() => window.location.href = '/admin/collections/create'}>
                         create a collection
                     </button>
 
