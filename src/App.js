@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Grid, Paper } from '@mui/material';
 import { Modal } from 'react-bootstrap';
 import Cookies from 'js-cookie';
+import { GridComponent } from './components/elements/GridComponent';
 
 function App() {
   const [error, setErorr] = useState('');
@@ -445,12 +446,14 @@ function App() {
 
 
       </div>
+
       <div style={{ width: '90%' }}>
-        {movies.length > 0 && gridComponent(movies, "movies")}
-        {tv.length > 0 && gridComponent(tv, "tv")}
-        {songs.length > 0 && gridComponent(songs, 'songs')}
-        {books.length > 0 && gridComponent(books, 'books')}
-        {anime.length > 0 && gridComponent(anime, 'anime')}
+        {movies.length > 0 && <GridComponent media={movies} type="movies" />}
+        {tv.length > 0 && <GridComponent media={tv} type="tv" />}
+        {songs.length > 0 && <GridComponent media={songs} type='songs' />}
+        {books.length > 0 && <GridComponent media={books} type='books' />}
+        {anime.length > 0 && <GridComponent media={anime} type='anime' />}
+
       </div>
 
 
