@@ -112,9 +112,8 @@
   border: 5px solid var(--tone);
   border-radius: 4px;
   background-color: var(--base-grey);
-  color: var(--tone);
+  color: var(--highlight-white);
   font-size: 20px;
-  font-weight: bold;
   resize: none;
 
 }
