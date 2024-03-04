@@ -4,18 +4,20 @@ function App() {
   return (
     <div className='landing-container'>
 
-      <div className='landing-title'>
-        <div>
-          <h1>Hello <br /> There!</h1>
-          <div>
-            <img src='feature-icon-02.svg' width={"200%"} style={{marginLeft: "100%"}} />
-          </div>
+<div className='landing-title' style={{ marginLeft: '100px', minHeight: '100vh', position: 'relative' }}>
+      <div>
+        <h1 style={{ fontSize: '100px', fontWeight: '700', overflow: 'hidden', borderRight: '0.15em solid var(--tone-highlight)', whiteSpace: 'nowrap', margin: '0 auto', letterSpacing: '0.15em', color: 'var(--sharp-accent)', animation: 'typing 2s steps(40, end), blink-caret 0.75s step-end infinite' }}>Hello <br /> There!</h1>
+        <div className="image-container" style={{ position: 'absolute', top: '50%', right: '20px', transform: 'translateY(-50%)' }}>
+          <img src='feature-icon-02.svg' className="fixed-image" style={{ width: '300%' , objectFit: 'cover' }} alt="Feature Icon" />
+          <img src='feature-icon-05.svg' className="fixed-image" style={{ width: '300%', objectFit: 'cover' }} alt="Feature Icon" />
         </div>
-        <br/>
-        <h6 style={{ color: 'white', textAlign: 'center' }}> Ready to Dive into a World of Endless Entertainment? Let's Get Started!</h6>
-        <br />
-        
-        <p style={{border: 'none', backgroundColor: 'var(--neutral-purple)', borderRadius: 20, padding: 10}}>YOLO is a media recommendation system that left you find your next obsession, like your asking a friend!</p>
+      </div>
+      <br />
+      <h6 style={{ color: 'white', textAlign: 'center' }}> Ready to Dive into a World of Endless Entertainment? Let's Get Started!</h6>
+      <br />
+      <br />
+      <br />
+      <p style={{ border: 'none', textAlign: 'center', backgroundColor: 'var(--deep-blue)', borderRadius: '20px', padding: '30px', color: 'var(--highlight-white)', zIndex: 20, fontWeight: 'bold' }}>YOLO is a media recommendation system that helps you find your next obsession, like you're asking a friend!</p>
       </div>
       {/* 
       <div className='prompts'> */}
