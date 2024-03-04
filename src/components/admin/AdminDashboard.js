@@ -18,13 +18,13 @@ export default function AdminDashboard() {
 
 
                 <div className='admin-actions'>
-                    <button>
+                    <button onClick={() => window.location.href='/admin/requests'}>
                         view boost requests
                     </button>
-                    <button>
+                    <button onClick={() => window.location.href='/admin/collections/create'}>
                         create a collection
                     </button>
-                    <button>
+                    <button onClick={() => window.location.href='/admin/c'}>
                         edit collections
                     </button>
 

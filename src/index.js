@@ -37,6 +37,7 @@ import ApproveRequests from './components/admin/ApproveRequests';
 
 import Header from './components/elements/Header';
 import Enroll from './components/cc/Enroll';
+import CreateCollection from './components/admin/CreateCollection';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -72,6 +73,7 @@ root.render(
           <Route path='/admin' element={<AdminLogin />} />
           <Route path='/admin/dashboard' element={<AdminDashboard />} />
           <Route path='/admin/collections' element={<ManageCollections />} />
+          <Route path='/admin/collections/create' element = {<CreateCollection />} />
           <Route path='/admin/requests' element={<ApproveRequests />} />
 
 
