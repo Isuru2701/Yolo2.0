@@ -1,4 +1,7 @@
+import Checkbox from '@mui/material/Checkbox';
+import { styled } from '@mui/material';
 import React, { useState } from "react";
+import { Remove } from '@mui/icons-material';
 
 export default function CreateCollection() {
     const [contents, setContents] = useState([{ title: "", link: "" }]);
@@ -27,9 +30,26 @@ export default function CreateCollection() {
         setContents(newContents);
     }
 
+    const GoldCheckbox = styled(Checkbox)({
+        color: 'gold', // replace 'gold' with your actual color value
+        '&.Mui-checked': {
+            color: 'gold', // replace 'gold' with your actual color value
+        },
+    });
+
+    const fetchKeywords = async () => {
+    }
+
+
+    const handleRemoveContent = (index) => {
+        setContents(contents.filter((content, i) => i !== index));
+    }
+
     return (
         <div className='cc-dashboard-container'>
+
             <form onSubmit={handleCreate} style={{ margin: 50 }}>
+                <h1>Create Collection</h1>
                 {contents.map((content, index) => (
                     <div key={index} style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: '10px' }}>
                         <div>
@@ -37,12 +57,13 @@ export default function CreateCollection() {
                             <input type="text" value={content.title} onChange={e => handleContentChange(index, 'title', e.target.value)} />
                         </div>
                         <div>
-                            <label>Content Link:</label>
+                            <label>Link:</label>
                             <input type="text" value={content.link} onChange={e => handleContentChange(index, 'link', e.target.value)} />
+                            <button type="button" onClick={() => handleRemoveContent(index)} disabled={contents.length === 1} style={{backgroundColor:'transparent', marginLeft: 10, border:'none'}}><Remove sx= {{color: 'var(--sharp-blue)'}}/></button>
                         </div>
                     </div>
                 ))}
-                <button type="button" onClick={handleAddContent}>Add Content</button>
+                <button type="button" onClick={handleAddContent} style={{backgroundColor: "var(--tone-highlight)"}}>Add Content</button>
                 <label>
                     Description:
                 </label>
@@ -56,7 +77,7 @@ export default function CreateCollection() {
                 <label>
                     Keywords:
                 </label>
-                <input type="text" value={keywords} onChange={e => setKeywords(e.target.value)} />
+                <input type="text" placeholder='comma-separated,like,this' value={keywords} onChange={e => setKeywords(e.target.value)} />
 
                 <label>
                     Title:
@@ -64,9 +85,9 @@ export default function CreateCollection() {
                 <input type="text" value={title} onChange={e => setTitle(e.target.value)} />
 
                 <label>
-                    Premium:
+                    Premium: <GoldCheckbox checked={premium} sx={{ color: "var(--gold)" }} onChange={e => setPremium(e.target.checked)} />
                 </label>
-                <input type="checkbox" checked={premium} onChange={e => setPremium(e.target.checked)} />
+
 
                 <input type="submit" value="Submit" />
             </form>
