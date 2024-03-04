@@ -16,8 +16,33 @@ export default function CreateCollection() {
 
         const keywordsList = keywords.split(',');
 
-        // Now you have the form data in the format you want. You can handle it as needed.
+       
         console.log({ contents, description, duration, keywordsList, title, premium });
+        const formData = {
+            contents,
+            description,
+            duration,
+            keywordsList,
+            title,
+            premium
+        };
+
+        const response = await fetch('/admin/collections/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            
+            console.log("Data stored successfully:", formData);
+        } else {
+            
+            console.log("Error storing data");
+        }
     }
 
     const handleAddContent = () => {
