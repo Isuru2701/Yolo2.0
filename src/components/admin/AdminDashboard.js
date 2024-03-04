@@ -33,7 +33,7 @@ export default function AdminDashboard() {
                 <div className='admin-header'>
                     <h2> Analytics </h2>
                 </div>
-                <div className='admin-analytics'>
+                {/* <div className='admin-analytics'>
 
                     <ChartComponent />
                     <ChartComponent />
@@ -41,7 +41,7 @@ export default function AdminDashboard() {
                     <button>generate report</button>
                 </div>
 
-                <ManageCollections />
+                <ManageCollections /> */}
 
 
             </div>

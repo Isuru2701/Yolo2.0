@@ -48,7 +48,7 @@ export default function CCDashboard() {
     return (
         <>
             <div className='cc-dashboard-container'>
-                {!Cookies.get('cc') && <CCVerify />}
+                {/* {!Cookies.get('cc') && <CCVerify />} */}
                 <div className='cc-header'>
                     <h1>Content Creator Dashboard</h1>
                     <br />

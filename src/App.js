@@ -10,6 +10,12 @@ function App() {
   const [limit, setLimit] = useState('');
   const [media, setMedia] = useState({ 'url': '', 'title': '', 'type': '', 'premium': false })
   const handleFetchKeywords = async (event) => {
+
+    if (text === '') {
+      setErorr('Please enter something');
+      return;
+    }
+
     event.preventDefault();
     console.log('fetching keywords');
 
@@ -27,41 +33,39 @@ function App() {
       if (response.ok) {
         //print response contents
         var data = response.json();
-        console.log(response.json());
+        console.log(data);
 
         //stringify the list
         let string = data.join(', ');
 
         //check limit to is set
-        if(limit === ''){
-          handleFetchSongs(string);
-          handleFetchMovies(string);
-          handleFetchTV(string);
-          handleFetchBooks(string);
-          handleFetchAnime(string);
+        handleFetchSongs(string);
+        handleFetchMovies(string);
+        handleFetchTV(string);
+        handleFetchBooks(string);
+        handleFetchAnime(string);
 
-        }
 
-        else if (limit === 'movies') {
+        if (limit === 'movies') {
           handleFetchMovies(string);
-          
+
         }
         else if (limit === 'tv') {
           handleFetchTV(string);
-          
+
         }
         else if (limit === 'songs') {
           handleFetchSongs(string);
-          
+
         }
         else if (limit === 'anime') {
           handleFetchAnime(string);
           handleFetchAnimeMovie(string);
-          
+
         }
         else if (limit === 'books') {
           handleFetchBooks(string);
-          
+
         }
 
 
@@ -84,7 +88,7 @@ function App() {
     console.log('fetching songs');
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/songs?${keywords}&media_type=song`, {
+      const songResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/songs?${keywords}&media_type=song`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -93,10 +97,10 @@ function App() {
         },
       });
 
-      if (response.ok) {
+      if (songResponse.ok) {
         //print response contents
-        var data = response.json();
-        console.log(response.json());
+        var data = songResponse.json();
+        console.log(data);
 
 
 
@@ -110,10 +114,10 @@ function App() {
   }
 
   const handleFetchMovies = async (keywords) => {
-    console.log('fetching songs');
+    console.log('fetching movies');
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/movies?${keywords}&media_type=movie`, {
+      const moviesResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/movies?${keywords}&media_type=movie`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -122,10 +126,10 @@ function App() {
         },
       });
 
-      if (response.ok) {
+      if (moviesResponse.ok) {
         //print response contents
-        var data = response.json();
-        console.log(response.json());
+        var data = moviesResponse.json();
+        console.log(data);
 
 
 
@@ -139,10 +143,10 @@ function App() {
   }
 
   const handleFetchTV = async (keywords) => {
-    console.log('fetching songs');
+    console.log('fetching tv shows');
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/tv?${keywords}&media_type=tv`, {
+      const tvResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/tv?${keywords}&media_type=tv`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -151,10 +155,10 @@ function App() {
         },
       });
 
-      if (response.ok) {
+      if (tvResponse.ok) {
         //print response contents
-        var data = response.json();
-        console.log(response.json());
+        var data = tvResponse.json();
+        console.log(data);
 
 
 
@@ -171,7 +175,7 @@ function App() {
     console.log('fetching songs');
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/books${keywords}&media_type=song`, {
+      const booksResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/books${keywords}&media_type=song`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -180,10 +184,10 @@ function App() {
         },
       });
 
-      if (response.ok) {
+      if (booksResponse.ok) {
         //print response contents
-        var data = response.json();
-        console.log(response.json());
+        var data = booksResponse.json();
+        console.log(data);
 
 
 
@@ -201,7 +205,7 @@ function App() {
     console.log('fetching songs');
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/anime?${keywords}&media_type=tv`, {
+      const animeResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/anime?${keywords}&media_type=tv`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -210,10 +214,10 @@ function App() {
         },
       });
 
-      if (response.ok) {
+      if (animeResponse.ok) {
         //print response contents
-        var data = response.json();
-        console.log(response.json());
+        var data = animeResponse.json();
+        console.log(data);
 
 
 
@@ -230,7 +234,7 @@ function App() {
     console.log('fetching songs');
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/anime?${keywords}&media_type=movie`, {
+      const animeMovieResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/anime?${keywords}&media_type=movie`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -239,10 +243,10 @@ function App() {
         },
       });
 
-      if (response.ok) {
+      if (animeMovieResponse.ok) {
         //print response contents
-        var data = response.json();
-        console.log(response.json());
+        var data = animeMovieResponse.json();
+        console.log(data);
 
 
 
@@ -303,7 +307,7 @@ function App() {
             }}
 
           >
-            <MenuItem value="None" className="menu-item"  onChange={() => setLimit('')}>None</MenuItem>
+            <MenuItem value="None" className="menu-item" onChange={() => setLimit('')}>None</MenuItem>
             <MenuItem value="Movies" className="menu-item" onChange={() => setLimit('movies')}>Movies</MenuItem>
             <MenuItem value="TV" className="menu-item" onChange={() => setLimit('tv')}>TV</MenuItem>
             <MenuItem value="Anime" className="menu-item" onChange={() => setLimit('anime')}>Anime</MenuItem>
