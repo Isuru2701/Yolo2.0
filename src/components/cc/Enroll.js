@@ -57,6 +57,10 @@ export default function Enroll() {
         <>
             <div className='cc-dashboard-container'>
                 <form onSubmit={handleEnroll} style={{margin: 50}}>
+                <h1>Enroll for the creators program</h1>
+                    <br/>
+                    <br/>
+                    
                     <label>What is your platform</label>
                     <button className={`choice-button${youtuberPressed? '-pressed': ''}`} value="youtuber" onClick={youtube}>
                         <img src='/youtube-icon.svg' style={{ width: '10%', height: 'auto', objectFit: 'cover' }} />   Youtube
