@@ -58,6 +58,7 @@
 .requests-container {
     width: 100%;
     background-color: var(--base-grey);
+    padding: 5px;
 
 }
 
@@ -66,7 +67,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     padding: 1rem 2rem;
-    width: 0%;
+    margin: 5px;
     background-color: var(--base-grey);
     color: var(--highlight-white);
     /* margin: 10px; */

@@ -2,6 +2,7 @@ import React from "react";
 import '../../styles/admin.css';
 import ChartComponent from "../elements/Chart";
 import Cookies from "js-cookie";
+import ManageCollections from "./ManageCollections";
 export default function AdminDashboard() {
     if (!Cookies.get('admin')) {
         window.location.href = "/admin/";
@@ -24,9 +25,6 @@ export default function AdminDashboard() {
                     <button onClick={() => window.location.href='/admin/collections/create'}>
                         create a collection
                     </button>
-                    <button onClick={() => window.location.href='/admin/c'}>
-                        edit collections
-                    </button>
 
                 </div>
 
@@ -42,6 +40,8 @@ export default function AdminDashboard() {
                     <ChartComponent />
                     <button>generate report</button>
                 </div>
+
+                <ManageCollections />
 
 
             </div>
