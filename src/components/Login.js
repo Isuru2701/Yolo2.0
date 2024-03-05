@@ -23,9 +23,32 @@ export default function Login() {
             });
 
             if (response.ok) {
+                const data = await response.json();
                 Cookies.set("email", email)// Update cookie or perform any other successful login action
+                Cookies.set("user", JSON.stringify(data));
+                console.log(Cookies.get('user'));
+                /*
+                {
+                    "agree": "",
+                    "business_email": "indu@gmail.com",
+                    "contact_number": "",
+                    "country": "country",
+                    "description": "i need to market my product",
+                    "doc_id": "1EVscQ7CDHh4XttrkboK",
+                    "email": "email@email.com",
+                    "link": "facebook.com",
+                    "name": "name",
+                    "password": "$2b$12$.hZcB/tWkbrwr6Wlu8/wyOV307/i94f8.VLkZSIRcWE12xPIADX3a",
+                    "premium": "",
+                    "region": "region",
+                    "request": "pending",
+                    "role": "",
+                    "type": "youtuber"
+                }
+                 */
+
                 //redirect
-                window.location.href = "/";
+                // window.location.href = "/";
             } else {
                 setError("Invalid email or password. Please try again.");
             }

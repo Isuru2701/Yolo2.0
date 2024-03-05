@@ -34,9 +34,11 @@ export default function Header() {
         if (Cookies.get('premium')) {
             Cookies.remove('premium');
         }
-        if (Cookies.get('cc')) {
-            Cookies.remove('cc');
+        if (Cookies.get('user')) {
+            Cookies.remove('user');
         }
+
+
     }
 
 

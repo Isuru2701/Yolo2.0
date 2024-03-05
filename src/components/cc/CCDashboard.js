@@ -44,6 +44,8 @@ export default function CCDashboard() {
 
 
 
+    console.log(Cookies.get('user'));
+
     //load previous boosts (history) here too. include views.
     return (
         <>

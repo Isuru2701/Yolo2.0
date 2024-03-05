@@ -30,7 +30,19 @@ export default function Enroll() {
             });
 
             if (response.ok) {
-                window.location.href = '/creators/success'
+                let user = Cookies.get('user');
+                user = JSON.parse(user);
+
+                // Append new data to the user object
+                user.type = userType;
+                user.link = link;
+                user.business_email = email;
+                user.description = goal;
+
+                // Stringify the user object and store it back in the cookie
+                Cookies.set('user', JSON.stringify(user));
+
+                window.location.href = '/creators/success';
             } else {
                 setError("Action did not complete successfully. Please try again later");
             }
