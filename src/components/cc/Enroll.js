@@ -30,6 +30,12 @@ export default function Enroll() {
             });
 
             if (response.ok) {
+
+                let user = Cookies.get('user')
+                user = JSON.parse(user)
+                user.
+
+                
                 window.location.href = '/creators/success'
             } else {
                 setError("Action did not complete successfully. Please try again later");
