@@ -77,9 +77,8 @@ export default function Register() {
             });
 
             if (response['success'] == true) {
-                Cookies.set("email", email);// Update cookie or perform any other successful login action
                 //redirect
-                window.location.href = "/";
+                window.location.href = "/register";
                 console.log('triggered')
             } else if (response['success'] == false) {
                 setError("user already exists");
