@@ -12,7 +12,6 @@ export default function Boost() {
     }
 
 
-
     return (
         <>
             <div className='cc-dashboard-container'>
