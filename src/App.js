@@ -34,6 +34,14 @@ function App() {
     console.log('fetching keywords');
 
     try {
+
+      //clear old contents 
+      setMovies([]);
+      setTV([]);
+      setSongs([]);
+      setBooks([]);
+      setAnime([]);
+
       const response = await fetch(`${process.env.REACT_APP_API_URL}/api/keywords`, {
         method: "POST",
         mode: "cors",
@@ -47,10 +55,10 @@ function App() {
       if (response.ok) {
         //print response contents
         var data = await response.json();
-        console.log(data);
+        console.log(data.join(', '));
 
         //stringify the list
-        let keywords = data.join(', ');
+        let keywords = data.map(item => item.trim().toLowerCase()).join(',');
 
         //check limit to is set
 
@@ -113,7 +121,9 @@ function App() {
     console.log('fetching songs');
 
     try {
-      const songResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/songs?${keywords}&media_type=song`, {
+      console.log(`${process.env.REACT_APP_API_URL}/api/songs?keywords=${keywords}&media_type=song`);
+
+      const songResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/songs?keywords=${keywords}&media_type=song`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -141,11 +151,14 @@ function App() {
         }));
         setSongs(songs => [...songs, ...transformedData]);
 
+        console.log(songs);
+
       } else {
         setErorr("Sorry, we didn't quite catch that. try");
 
       }
     } catch (error) {
+      
     }
 
   }
@@ -154,7 +167,7 @@ function App() {
     console.log('fetching movies');
 
     try {
-      const moviesResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/tv?${keywords}&media_type=movie`, {
+      const moviesResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/tv?keywords=${keywords}&media_type=movie`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -199,7 +212,7 @@ function App() {
     console.log('fetching tv shows');
 
     try {
-      const tvResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/tv?${keywords}&media_type=tv`, {
+      const tvResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/tv?keywords=${keywords}&media_type=tv`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -247,7 +260,7 @@ function App() {
 
 
     try {
-      const booksResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/books?${keywords}&media_type=song`, {
+      const booksResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/books?keywords=${keywords}&media_type=song`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -294,7 +307,7 @@ function App() {
     console.log('fetching songs');
 
     try {
-      const animeResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/anime?${keywords}&media_type=tv`, {
+      const animeResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/anime?keywords=${keywords}&media_type=tv`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -340,7 +353,7 @@ function App() {
     console.log('fetching songs');
 
     try {
-      const animeMovieResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/anime?${keywords}&media_type=movie`, {
+      const animeMovieResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/anime?keywords=${keywords}&media_type=movie`, {
         method: "GET",
         mode: "cors",
         headers: {
