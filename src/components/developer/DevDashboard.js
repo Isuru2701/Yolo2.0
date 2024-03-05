@@ -38,14 +38,13 @@ export default function DevDashboard() {
                 <h1 className='heading'>Developer Portal</h1>
                 <center className='text-blob'>
                     Access our services as an API for your awesome applications!
-                    Premium users can access the development API for free!
                     If you're going into production, and would like to increase your API limits, please contact us.
                 </center>
 
                 <br></br>
 
                 <div className="dev-body">
-                    <Chart />
+                    <Chart dataset={[20,80]}/>
 
                     <div className='col-container'>
                         <div className='api-token'>

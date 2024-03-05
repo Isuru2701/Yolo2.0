@@ -9,7 +9,7 @@ export default function Collection() {
         <div className='collection-container'>
             <div className='content-main'>
                 <div className='collection-image'>
-                    <img src='https://media.discordapp.net/attachments/1019486048876777532/1195289869832949830/bocchi-the-rock-wallpapers-v0-3ftgkqnlr67a1.png?ex=65e197f0&is=65cf22f0&hm=11492131440cf05944a3024481adf3f165164fee9a05e5dcb2c6f6e9702bf38f&=&format=webp&quality=lossless&width=372&height=662' />
+                    <img src='https://www.svgrepo.com/show/508699/landscape-placeholder.svg' />
                 </div>
                 <span className='content-info'>
                     <h1>Title</h1>

@@ -33,7 +33,7 @@ export default function Boost() {
                     <input type="url" value={link} onChange={e => setLink(e.target.value)} required />
 
                     <label>
-                        What do you hope to achieve on the platform?
+                        Any comments?
                     </label>
                     <textarea
                         style={{

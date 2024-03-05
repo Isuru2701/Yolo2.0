@@ -85,7 +85,7 @@ export default function Register() {
                 setError("user already exists");
             }
         } catch (error) {
-            setError(true);
+            console.log(error);
         }
     };
 

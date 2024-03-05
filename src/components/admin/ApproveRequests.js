@@ -7,12 +7,11 @@ export default function ApproveRequests() {
 
     //replace in handleFetch
     var requests = [
-        { id: 1, name: 'Request 1' },
-        { id: 2, name: 'Request 2' },
-        { id: 3, name: 'Request 3' },
-        { id: 4, name: 'Request 4' },
-        { id: 5, name: 'Request 5' },
-        { id: 6, name: 'Request 6' }
+        { id: 1, name: 'Request 1', email: 'email1', link: 'link1', comments: 'comments1' },
+        { id: 2, name: 'Request 2', email: 'email2', link: 'link2', comments: 'comments2' },
+        { id: 3, name: 'Request 3', email: 'email3', link: 'link3', comments: 'comments3' },
+        { id: 4, name: 'Request 4', email: 'email4', link: 'link4', comments: 'comments4' },
+        { id: 5, name: 'Request 5', email: 'email5', link: 'link5', comments: 'comments5' },
 
     ];
     //load all requests from backend
@@ -30,11 +29,11 @@ export default function ApproveRequests() {
     const generateReport = () => {
         const doc = new jsPDF();
 
-        const tableColumn = ["ID", "Name"];
+        const tableColumn = ["ID", "Name", "Email", "Link", "Comments"];
         const tableRows = [];
 
         requests.forEach(request => {
-            const reportData = [request.id, request.name];
+            const reportData = [request.id, request.name, request.email, request.link, request.comments];
             tableRows.push(reportData);
         });
         const date = new Date();

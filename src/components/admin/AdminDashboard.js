@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import ManageCollections from "./ManageCollections";
 export default function AdminDashboard() {
 
-    
+
     return (
         <>
             <div className='admin-dashboard-container'>
@@ -29,19 +29,19 @@ export default function AdminDashboard() {
 
                 <br />
 
-                <div className='admin-header'>
+                {/* <div className='admin-header'>
                     <h2> Analytics </h2>
                 </div>
-                {/* <div className='admin-analytics'>
+                { <div className='admin-analytics'>
 
                     <ChartComponent />
                     <ChartComponent />
                     <ChartComponent />
                     <button>generate report</button>
-                </div>
+                </div> 
 
-                <ManageCollections /> */}
-
+                 */}
+                <ManageCollections />
 
             </div>
         </>
