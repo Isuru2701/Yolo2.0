@@ -55,12 +55,12 @@ export default function Register() {
         }
 
         const passwordRegex = /^(?=.*[A-Z]).{9,}$/;
-        if(!passwordRegex.test(password)){
+        if (!passwordRegex.test(password)) {
             setError('Password must contain at least 9 characters and one uppercase letter.');
             return;
         }
 
-        if(!agree) {
+        if (!agree) {
 
         }
 
@@ -76,15 +76,16 @@ export default function Register() {
                 body: JSON.stringify({ "name": name, "country": country, "region": region, "email": email, "password": password })
             });
 
-            if (response['success'] == true) {
+            if (response.ok) {
                 //redirect
-                window.location.href = "/register";
+                window.location.href = "/login";
                 console.log('triggered')
-            } else if (response['success'] == false) {
+            } else {
+                console.log('triggered false')
                 setError("user already exists");
             }
         } catch (error) {
-            console.log(error);
+            alert(" ERORR user already exists");
         }
     };
 
@@ -177,7 +178,7 @@ export default function Register() {
                     </label>
                 </div>
                 <button type="submit" onClick={handleRegister} className='login-button'>Register</button>
-                
+
                 {error && <p className='error-message'>{error}</p>}
                 <a className="redirect" href="/login">
                     <br />
