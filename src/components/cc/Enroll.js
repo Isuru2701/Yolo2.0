@@ -30,7 +30,7 @@ export default function Enroll() {
             });
 
             if (response.ok) {
-                window.location.href = '/success'
+                window.location.href = '/creators/success'
             } else {
                 setError("Action did not complete successfully. Please try again later");
             }
