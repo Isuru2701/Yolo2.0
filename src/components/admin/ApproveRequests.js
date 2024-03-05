@@ -39,6 +39,7 @@ export default function ApproveRequests() {
         const date = new Date();
         const dateString = `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`;
 
+        doc.text("YOLO ADMIN REPORT", 14, 10);
         doc.text("Pending Requests Report", 14, 15);
         doc.text(`Date: ${dateString}`, 14, 25); // Add the date to the report
         doc.autoTable(tableColumn, tableRows, { startY: 30 }); // Adjust the startY value to leave space for the date
