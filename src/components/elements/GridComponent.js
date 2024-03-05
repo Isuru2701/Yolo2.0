@@ -86,10 +86,10 @@ export function GridComponent({ media, type }) {
                                     More Info
                                 </Button>
 
-                                <Button color="primary" aria-label="More info" onClick={() => window.open('https://www.google.com/search?q='+activeItem.title, '_blank')}>
+                                {/* <Button color="primary" aria-label="More info" onClick={() => window.open('https://www.google.com/search?q='+activeItem.title, '_blank')}>
                                     <Google />
                                     Search on Google
-                                </Button>
+                                </Button> */}
                             </Box>
 
                         </>

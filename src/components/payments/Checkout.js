@@ -11,25 +11,31 @@ export default function Checkout() {
     
     const query = new URLSearchParams(location.search);
     const product = query.get('t');
+    console.log(product);
 
     const handlePayment = async (event) => {
         event.preventDefault(); // Prevent the form from refreshing the page
-
+        console.log("Payment button clicked");
         //fetch payment
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/checkout`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/payment/create-checkout-session`, {
                 method: "POST",
                 mode: "cors",
                 headers: {
                     "Access-Control-Allow-Origin": "*",
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ "product": product })
+                body: JSON.stringify({ "lookup_key": type })
             });
 
             if (response.ok) {
-                //redirect
-                window.location.href = "/success";
+                const data = await response.json();
+                console.log(data)
+                if(data['success'] == true){
+                        window.open(data.url, "_blank");
+                }
+                
+                
             } else {
             }
         } catch (error) {
@@ -63,7 +69,8 @@ export default function Checkout() {
             <div className='amt-info'>
                 <h1 className='amt'>$AMT</h1>
                 <hr style={{color: 'black'}}/>
-                <button className='checkout-btn'>Checkout With Stripe</button>
+            
+                <button  onClick= {handlePayment} className='checkout-btn'>Checkout With Stripe</button>
             </div>
 
         </div>

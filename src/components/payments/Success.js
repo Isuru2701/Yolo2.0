@@ -2,7 +2,43 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import { Check } from '@mui/icons-material';
 import { Typography } from '@mui/material';
+import { useState } from 'react';
+import Cookies from 'js-cookie';
+
+
 function SuccessMessage() {
+    
+    const [email, setEmail] = useState("");
+    const [amount, setAmount] = useState("");
+    const [error, setError] = useState("");
+
+    const handleLedger = async (event) => {
+        event.preventDefault(); // Prevent the form from refreshing the page
+
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/success`, {
+                method: "POST",
+                mode: "cors",
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ "email": email, "amount": 10})
+            });
+
+            if (response.ok) {
+                Cookies.set("email", email , "amount",amount )
+                
+            
+            } else {
+                setError("Invalid entry check payment details. Please try again.");
+            }
+        } catch (error) {
+            setError("An unknown error occurred. Please try again later.");
+        }
+    };
+
+
     return (
         <div
         style={{
