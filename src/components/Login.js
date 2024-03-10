@@ -48,7 +48,7 @@ export default function Login() {
                  */
 
                 //redirect
-                // window.location.href = "/";
+                window.location.href = "/";
             } else {
                 setError("Invalid email or password. Please try again.");
             }

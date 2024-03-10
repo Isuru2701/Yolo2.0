@@ -18,6 +18,7 @@ function App() {
   const [songs, setSongs] = useState([]);
   const [books, setBooks] = useState([]);
   const [anime, setAnime] = useState([]);
+  const [keywords, setKeywords]  = useState([]);
 
 
   const handleFetchKeywords = async (event) => {
@@ -58,7 +59,7 @@ function App() {
         console.log(data.join(', '));
 
         //stringify the list
-        let keywords = data.map(item => item.trim().toLowerCase()).join(',');
+         setKeywords(data.map(item => item.trim().toLowerCase()).join(','));
 
         //check limit to is set
 
