@@ -18,6 +18,9 @@ export function GridComponent({ media, type }) {
 
     return (
         <>
+        <div style={{backgroundColor: 'var(--base-grey)', margin: "5px", padding: '10px', borderRadius: '10px'}}>
+            <h2 style={{ color: 'white', textAlign: 'center', float:"none" }}>{type}</h2>
+            </div>
             <Grid container spacing={3} width={'90%'}>
 
                 {media.map((item, index) => (
@@ -31,7 +34,7 @@ export function GridComponent({ media, type }) {
                     </Grid>
                 ))}
             </Grid>
-            <h2 style={{ color: 'white', textAlign: 'center' }}>{type}</h2>
+
             <br />
 
             <Modal
@@ -78,7 +81,7 @@ export function GridComponent({ media, type }) {
                                     {activeItem.overview}
                                 </Typography>
                             </div>
-                            <br/>
+                            <br />
 
                             <Box display="flex" justifyContent="center">
                                 <Button color="primary" aria-label="More info" onClick={() => window.open(activeItem.search_link, '_blank')}>

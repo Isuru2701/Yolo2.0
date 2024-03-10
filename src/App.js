@@ -1,7 +1,7 @@
 import './App.css';
 import { Select, MenuItem } from '@mui/material';
 import { InputLabel } from '@mui/material';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Grid, Paper } from '@mui/material';
 import Cookies from 'js-cookie';
 import { GridComponent } from './components/elements/GridComponent';
@@ -19,6 +19,7 @@ function App() {
   const [books, setBooks] = useState([]);
   const [anime, setAnime] = useState([]);
   const [keywords, setKeywords]  = useState([]);
+  const scrollRef = useRef(null);
 
 
   const handleFetchKeywords = async (event) => {
@@ -59,47 +60,47 @@ function App() {
         console.log(data.join(', '));
 
         //stringify the list
-         setKeywords(data.map(item => item.trim().toLowerCase()).join(','));
+         setKeywords(data.map(item => item.trim().toLowerCase()));
 
         //check limit to is set
 
-        console.log(keywords);
+        console.log(encodeURIComponent(keywords));
 
 
         if (limit === 'movies') {
-          handleFetchMovies(keywords);
+          await handleFetchMovies(keywords);
 
         }
         else if (limit === 'tv') {
-          handleFetchTV(keywords);
+          await handleFetchTV(keywords);
 
         }
         else if (limit === 'songs') {
-          handleFetchSongs(keywords);
+          await handleFetchSongs(keywords);
 
         }
         else if (limit === 'anime') {
-          handleFetchAnime(keywords);
-          handleFetchAnimeMovie(keywords);
+          await handleFetchAnime(keywords);
+          await handleFetchAnimeMovie(keywords);
 
         }
         else if (limit === 'books') {
-          handleFetchBooks(keywords);
+          await handleFetchBooks(keywords);
 
         }
         else {
           console.log('--------------');
-          handleFetchSongs(keywords);
+          await handleFetchSongs(keywords);
           console.log('--------------');
-          handleFetchMovies(keywords);
+          await handleFetchMovies(keywords);
           console.log('--------------');
-          handleFetchTV(keywords);
+          await handleFetchTV(keywords);
           console.log('--------------');
-          handleFetchBooks(keywords);
+          await handleFetchBooks(keywords);
           console.log('--------------');
-          handleFetchAnime(keywords);
+          await handleFetchAnime(keywords);
           console.log('--------------');
-          handleFetchAnimeMovie(keywords);
+          await handleFetchAnimeMovie(keywords);
         }
 
 
@@ -120,11 +121,12 @@ function App() {
 
   const handleFetchSongs = async (keywords) => {
     console.log('fetching songs');
+    console.log(keywords);
 
     try {
-      console.log(`${process.env.REACT_APP_API_URL}/api/songs?keywords=${keywords}&media_type=song`);
+      console.log(`${process.env.REACT_APP_API_URL}/api/songs?keywords=${keywords.join(',')}&media_type=song`);
 
-      const songResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/songs?keywords=${keywords}&media_type=song`, {
+      const songResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/songs?keywords=${keywords.join(',')}&media_type=song`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -166,9 +168,10 @@ function App() {
 
   const handleFetchMovies = async (keywords) => {
     console.log('fetching movies');
+    console.log(`${process.env.REACT_APP_API_URL}/api/tv?keywords=${keywords.join(',')}&media_type=movie`)
 
     try {
-      const moviesResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/tv?keywords=${keywords}&media_type=movie`, {
+      const moviesResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/tv?keywords=${keywords.join(',')}&media_type=movie`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -211,9 +214,9 @@ function App() {
 
   const handleFetchTV = async (keywords) => {
     console.log('fetching tv shows');
-
+    console.log(`${process.env.REACT_APP_API_URL}/api/tv?keywords=${keywords.join(',')}&media_type=tv`);
     try {
-      const tvResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/tv?keywords=${keywords}&media_type=tv`, {
+      const tvResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/tv?keywords=${keywords.join(',')}&media_type=tv`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -258,10 +261,11 @@ function App() {
   const handleFetchBooks = async (keywords) => { //TODO: books isnt working, fix it 
     console.log('fetching books');
     console.log(keywords);
+    console.log(`${process.env.REACT_APP_API_URL}/api/books?keywords=${keywords.join(',')}&media_type=song`);
 
 
     try {
-      const booksResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/books?keywords=${keywords}&media_type=song`, {
+      const booksResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/books?keywords=${keywords.join(',')}`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -305,10 +309,11 @@ function App() {
 
 
   const handleFetchAnime = async (keywords) => {
-    console.log('fetching songs');
+    console.log('fetching anime');
+    console.log(`${process.env.REACT_APP_API_URL}/api/anime?keywords=${keywords.join(',')}&media_type=tv`);
 
     try {
-      const animeResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/anime?keywords=${keywords}&media_type=tv`, {
+      const animeResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/anime?keywords=${keywords.join(',')}&media_type=tv`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -351,10 +356,10 @@ function App() {
   }
 
   const handleFetchAnimeMovie = async (keywords) => {
-    console.log('fetching songs');
-
+    console.log('fetching anime movies');
+    console.log(`${process.env.REACT_APP_API_URL}/api/anime?keywords=${keywords.join(',')}&media_type=movie`);
     try {
-      const animeMovieResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/anime?keywords=${keywords}&media_type=movie`, {
+      const animeMovieResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/anime?keywords=${keywords.join(',')}&media_type=movie`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -394,6 +399,10 @@ function App() {
     } catch (error) {
     }
 
+  }
+
+  if (movies.length > 0 || tv.length > 0 || songs.length > 0 || books.length > 0 || anime.length > 0) {
+    scrollRef.current.scrollIntoView({ behavior: 'smooth' });
   }
 
 
@@ -442,6 +451,7 @@ function App() {
               color: 'var(--tone-highlight)',
               padding: '5px'
             }}
+            defaultValue={''}
 
           >
             <MenuItem value="None" className="menu-item" onChange={() => setLimit('')}>None</MenuItem>
@@ -460,7 +470,7 @@ function App() {
 
       </div>
 
-      <div style={{ width: '90%' }}>
+      <div ref={scrollRef} style={{ width: '90%' }}>
         {movies.length > 0 && <GridComponent media={movies} type="movies" />}
         {tv.length > 0 && <GridComponent media={tv} type="tv" />}
         {songs.length > 0 && <GridComponent media={songs} type='songs' />}
