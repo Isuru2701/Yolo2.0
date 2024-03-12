@@ -1,10 +1,11 @@
 import './App.css';
 import { Select, MenuItem } from '@mui/material';
 import { InputLabel } from '@mui/material';
-import { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Grid, Paper } from '@mui/material';
 import Cookies from 'js-cookie';
 import { GridComponent } from './components/elements/GridComponent';
+
 
 function App() {
   const [error, setErorr] = useState('');
@@ -18,15 +19,22 @@ function App() {
   const [songs, setSongs] = useState([]);
   const [books, setBooks] = useState([]);
   const [anime, setAnime] = useState([]);
-  const [keywords, setKeywords]  = useState([]);
+  const [keywordsList, setKeywords] = useState([]);
   const scrollRef = useRef(null);
 
 
+
+
   const handleFetchKeywords = async (event) => {
+    event.preventDefault();
 
     if (text === '') {
       setErorr('Please enter something');
       return;
+    }
+
+    else if (!Cookies.get('email')) {
+      setErorr('Please login to use this feature');
     }
     else {
       setErorr('');
@@ -60,58 +68,69 @@ function App() {
         console.log(data.join(', '));
 
         //stringify the list
-         setKeywords(data.map(item => item.trim().toLowerCase()));
+        const keylist = data.map(item => encodeURIComponent(item.trim().toLowerCase()));
+        console.log("KEYLIST is ", keylist);
+        setKeywords(keylist);
+
+        // useEffect(() => {
+        //   console.log("KEYWORDS ARE ", keywordsList);
+        // }, [keywordsList]); // This will run every time `keywordsList` changes
+
 
         //check limit to is set
 
-        console.log(encodeURIComponent(keywords));
+        console.log(encodeURIComponent(keywordsList));
+        console.log(limit);
 
 
         if (limit === 'movies') {
-          await handleFetchMovies(keywords);
+          await handleFetchMovies(keylist);
 
         }
         else if (limit === 'tv') {
-          await handleFetchTV(keywords);
+          await handleFetchTV(keylist);
 
         }
         else if (limit === 'songs') {
-          await handleFetchSongs(keywords);
+          await handleFetchSongs(keylist);
 
         }
         else if (limit === 'anime') {
-          await handleFetchAnime(keywords);
-          await handleFetchAnimeMovie(keywords);
+          await handleFetchAnime(keylist);
+          await handleFetchAnimeMovie(keylist);
 
         }
         else if (limit === 'books') {
-          await handleFetchBooks(keywords);
+          await handleFetchBooks(keylist);
 
         }
         else {
           console.log('--------------');
-          await handleFetchSongs(keywords);
+          await handleFetchSongs(keylist);
           console.log('--------------');
-          await handleFetchMovies(keywords);
+          await handleFetchMovies(keylist);
           console.log('--------------');
-          await handleFetchTV(keywords);
+          await handleFetchTV(keylist);
           console.log('--------------');
-          await handleFetchBooks(keywords);
+          await handleFetchBooks(keylist);
           console.log('--------------');
-          await handleFetchAnime(keywords);
+          await handleFetchAnime(keylist);
           console.log('--------------');
-          await handleFetchAnimeMovie(keywords);
+          await handleFetchAnimeMovie(keylist);
+
         }
 
-
-
-
+        if (movies.length > 0 || tv.length > 0 || songs.length > 0 || books.length > 0 || anime.length > 0) {
+          scrollRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+      
 
       } else {
         setErorr("Sorry, we didn't quite catch that. try");
 
       }
     } catch (error) {
+      setErorr("Sorry, we didn't quite catch that. try");
     }
 
 
@@ -124,7 +143,7 @@ function App() {
     console.log(keywords);
 
     try {
-      console.log(`${process.env.REACT_APP_API_URL}/api/songs?keywords=${keywords.join(',')}&media_type=song`);
+      console.log(`${process.env.REACT_APP_API_URL}/api/songs?keywords=${keywords.join(',').trim()}&media_type=song`);
 
       const songResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/songs?keywords=${keywords.join(',')}&media_type=song`, {
         method: "GET",
@@ -140,7 +159,7 @@ function App() {
         var data = await songResponse.json();
         console.log(data);
 
-        var cap = 5;
+        var cap = 4;
         //process the data and put into media
         if (Cookies.get('premium')) {
           var cap = 20;
@@ -161,17 +180,17 @@ function App() {
 
       }
     } catch (error) {
-      
+
     }
 
   }
 
   const handleFetchMovies = async (keywords) => {
     console.log('fetching movies');
-    console.log(`${process.env.REACT_APP_API_URL}/api/tv?keywords=${keywords.join(',')}&media_type=movie`)
+    console.log(`${process.env.REACT_APP_API_URL}/api/tv?keywords=${keywords.join(',').trim()}&media_type=movie`)
 
     try {
-      const moviesResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/tv?keywords=${keywords.join(',')}&media_type=movie`, {
+      const moviesResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/tv?keywords=${keywords.join(',').trim()}&media_type=movie`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -183,10 +202,9 @@ function App() {
       if (moviesResponse.ok) {
         //print response contents
         var data = await moviesResponse.json();
-        console.log(data);
 
 
-        var cap = 5;
+        var cap = 4;
         //process the data and put into media
         if (Cookies.get('premium')) {
           var cap = 20;
@@ -214,9 +232,9 @@ function App() {
 
   const handleFetchTV = async (keywords) => {
     console.log('fetching tv shows');
-    console.log(`${process.env.REACT_APP_API_URL}/api/tv?keywords=${keywords.join(',')}&media_type=tv`);
+    console.log(`${process.env.REACT_APP_API_URL}/api/tv?keywords=${keywords.join(',').trim()}&media_type=tv`);
     try {
-      const tvResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/tv?keywords=${keywords.join(',')}&media_type=tv`, {
+      const tvResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/tv?keywords=${keywords.join(',').trim()}&media_type=tv`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -228,10 +246,9 @@ function App() {
       if (tvResponse.ok) {
         //print response contents
         var data = await tvResponse.json();
-        console.log(data);
 
 
-        var cap = 5;
+        var cap = 4;
         //process the data and put into media
         if (Cookies.get('premium')) {
           var cap = 20;
@@ -261,11 +278,11 @@ function App() {
   const handleFetchBooks = async (keywords) => { //TODO: books isnt working, fix it 
     console.log('fetching books');
     console.log(keywords);
-    console.log(`${process.env.REACT_APP_API_URL}/api/books?keywords=${keywords.join(',')}&media_type=song`);
+    console.log(`${process.env.REACT_APP_API_URL}/api/books?keywords=${keywords.join(',').trim()}&media_type=song`);
 
 
     try {
-      const booksResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/books?keywords=${keywords.join(',')}`, {
+      const booksResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/books?keywords=${keywords.join(',').trim()}`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -280,7 +297,7 @@ function App() {
         console.log(data);
 
 
-        var cap = 5;
+        var cap = 4;
         //process the data and put into media
         if (Cookies.get('premium')) {
           var cap = 20;
@@ -310,10 +327,10 @@ function App() {
 
   const handleFetchAnime = async (keywords) => {
     console.log('fetching anime');
-    console.log(`${process.env.REACT_APP_API_URL}/api/anime?keywords=${keywords.join(',')}&media_type=tv`);
+    console.log(`${process.env.REACT_APP_API_URL}/api/anime?keywords=${keywords.join(',').trim()}&media_type=tv`);
 
     try {
-      const animeResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/anime?keywords=${keywords.join(',')}&media_type=tv`, {
+      const animeResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/anime?keywords=${keywords.join(',').trim()}&media_type=tv`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -325,10 +342,10 @@ function App() {
       if (animeResponse.ok) {
         //print response contents
         var data = await animeResponse.json();
-        console.log(data);
 
 
-        var cap = 5;
+
+        var cap = 4;
         //process the data and put into media
         if (Cookies.get('premium')) {
           var cap = 20;
@@ -357,9 +374,9 @@ function App() {
 
   const handleFetchAnimeMovie = async (keywords) => {
     console.log('fetching anime movies');
-    console.log(`${process.env.REACT_APP_API_URL}/api/anime?keywords=${keywords.join(',')}&media_type=movie`);
+    console.log(`${process.env.REACT_APP_API_URL}/api/anime?keywords=${keywords.join(',').trim()}&media_type=movie`);
     try {
-      const animeMovieResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/anime?keywords=${keywords.join(',')}&media_type=movie`, {
+      const animeMovieResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/anime?keywords=${keywords.join(',').trim()}&media_type=movie`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -371,10 +388,9 @@ function App() {
       if (animeMovieResponse.ok) {
         //print response contents
         var data = await animeMovieResponse.json();
-        console.log(data);
 
 
-        var cap = 5;
+        var cap = 4;
         //process the data and put into media
         if (Cookies.get('premium')) {
           var cap = 20;
@@ -401,9 +417,6 @@ function App() {
 
   }
 
-  if (movies.length > 0 || tv.length > 0 || songs.length > 0 || books.length > 0 || anime.length > 0) {
-    scrollRef.current.scrollIntoView({ behavior: 'smooth' });
-  }
 
 
 
