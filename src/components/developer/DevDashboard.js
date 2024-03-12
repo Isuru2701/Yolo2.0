@@ -37,6 +37,28 @@ export default function DevDashboard() {
         }
     };
 
+    const handleGenerateApiKey = async () => {
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/developers/generate-api-key`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: Cookies.get("email")
+                })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+            } else {
+                setError("failed to generate API key");
+            }
+        } catch (error) {
+            setError(true);
+        }
+    };
+
     handleUsage();
 
     return (
@@ -56,7 +78,7 @@ export default function DevDashboard() {
                     <div className='col-container'>
                         <div className='api-token'>
                             <input type="text" placeholder="API Token" />
-                            <button className='generate-btn'>Generate New Token</button>
+                            <button className='generate-btn' onClick={handleGenerateApiKey}>Generate New Token</button>  #add event listnerzz
                             <button className="generate-btn"><Article />DOCS</button>
                             <button className='copy'><CopyAll /></button>
                         </div>
