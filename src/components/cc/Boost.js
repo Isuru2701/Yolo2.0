@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import '../../styles/creators.css';
+import { Title } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 export default function Boost() {
 
 
@@ -8,7 +10,25 @@ export default function Boost() {
     const [goal, setGoal] = useState("");
 
     const handleSubmitBoost = () => {
-
+    
+        const response = fetch(`${process.env.REACT_APP_API_URL}/creators/boost`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({"title": Title, "link": Link, "goal": goal})
+        })
+        .then(response => response.json())
+        .then(data => {
+           
+            console.log(data);
+            if(data['success'] == true){
+                window.location.href = "/success";
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
     }
 
 
