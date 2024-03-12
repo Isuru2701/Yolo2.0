@@ -10,6 +10,11 @@ export default function DevDashboard() {
 
     const [error, setError] = useState(false);
 
+    const [usage, setUsage] = useState(0);
+    const [quota, setQuota] = useState(0);
+
+    //TODO: first check if a user is premium. only then should they have permission to access the developer portal
+
     const handleUsage = async () => {
 
         try {
@@ -21,9 +26,11 @@ export default function DevDashboard() {
             });
 
             if (response.ok) {
-                // Update cookie or perform any other successful login action
+                const data = await response.json();
+                setUsage(data.req_count);
+                setQuota(data.total_usage);
             } else {
-                setError(true);
+                setError("failed to fetch usage data");
             }
         } catch (error) {
             setError(true);
@@ -44,7 +51,7 @@ export default function DevDashboard() {
                 <br></br>
 
                 <div className="dev-body">
-                    <Chart dataset={[20,80]}/>
+                    <Chart dataset={[usage,(quota - usage)]}/>
 
                     <div className='col-container'>
                         <div className='api-token'>
@@ -65,6 +72,7 @@ export default function DevDashboard() {
 
                     </div>
                 </div>
+                <div className='error'>{error}</div>
             </div>
         </>
     );

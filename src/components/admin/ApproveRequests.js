@@ -2,8 +2,12 @@ import React from 'react';
 import '../../styles/admin.css'; // Import the CSS file
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import Cookies from 'js-cookie';
+import { useState } from 'react';
 export default function ApproveRequests() {
-    // This is a placeholder. Replace it with your actual data.
+    // This is a placeholder. Replace it with actual data.
+
+    const [error, setError] = useState("");
 
     //replace in handleFetch
     var requests = [
@@ -16,6 +20,26 @@ export default function ApproveRequests() {
     ];
     //load all requests from backend
     const handleFetch = async () => {
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/pending`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                requests = data;
+                console.log(requests);
+                //TODO
+
+            } else {
+                setError("failed to fetch usage data");
+            }
+        } catch (error) {
+            setError(true);
+        }
     }
 
     //approve a request 
