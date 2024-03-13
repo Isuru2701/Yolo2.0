@@ -456,7 +456,7 @@ function App() {
           <InputLabel id="demo-simple-select-label" sx={{
             color: 'var(--tone-highlight)'
           }}>Limit to</InputLabel>
-          <Select
+          {/* <Select
             labelId="demo-simple-select-label"
             label='Limit'
             className="landing-button"
@@ -473,7 +473,7 @@ function App() {
             <MenuItem value="Anime" className="menu-item" onChange={() => setLimit('anime')}>Anime</MenuItem>
             <MenuItem value="Songs" className="menu-item" onChange={() => setLimit('songs')}>Songs</MenuItem>
             <MenuItem value="Books" className="menu-item" onChange={() => setLimit('books')}>Books</MenuItem>
-          </Select>
+          </Select> */}
           <button className="landing-button submit" onClick={handleFetchKeywords}>Submit</button>
           {error && <p className='error-message'>{error}</p>}
 
