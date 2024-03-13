@@ -99,7 +99,7 @@ export default function ApproveRequests() {
     const generateReport = () => {
         const doc = new jsPDF();
 
-        const tableColumn = ["Link", "Email", "Keywords", "Title"];
+        const tableColumn = ["Title", "Email", "Keywords", "Link"];
         const tableRows = [];
 
         requests.forEach(request => {
