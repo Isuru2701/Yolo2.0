@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../../styles/admin.css'; // Import the CSS file
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
@@ -10,7 +10,7 @@ export default function ApproveRequests() {
     const [error, setError] = useState("");
     const [requests, setRequests] = useState([]);
     //replace in handleFetch
-    
+
 
     //load all requests from backend
     const handleFetch = async () => {
@@ -24,11 +24,10 @@ export default function ApproveRequests() {
 
             if (response.ok) {
                 const data = await response.json();
-                requests = data;
                 console.log(requests);
-                setRequests(requests);
-                
-                
+                setRequests(data);
+
+
 
             } else {
                 setError("failed to fetch usage data");
@@ -47,7 +46,7 @@ export default function ApproveRequests() {
                     'Content-Type': 'application/json'
                 }
             });
-    
+
             if (response.ok) {
                 // Successfully approved the boost request
                 // Optionally, you can update the UI to reflect the approval
@@ -70,7 +69,7 @@ export default function ApproveRequests() {
                     'Content-Type': 'application/json'
                 }
             });
-    
+
             if (response.ok) {
                 // Successfully rejected the boost request
                 // Optionally, you can update the UI to reflect the rejection
@@ -88,7 +87,7 @@ export default function ApproveRequests() {
     const generateReport = () => {
         const doc = new jsPDF();
 
-        const tableColumn = [ "Link", "Email", "Keywords", "Title" ];
+        const tableColumn = ["Link", "Email", "Keywords", "Title"];
         const tableRows = [];
 
         requests.forEach(request => {
@@ -96,7 +95,7 @@ export default function ApproveRequests() {
             tableRows.push(reportData);
         });
         const date = new Date();
-        const dateString = `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`;
+        const dateString = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
 
         doc.text("YOLO ADMIN REPORT", 14, 10);
         doc.text("Pending Requests Report", 14, 15);
@@ -107,7 +106,9 @@ export default function ApproveRequests() {
     //TODO: after approving, turn the button text to approved and disable the button
 
     //load when component is mounted
-    handleFetch();
+    useEffect(() => {
+        handleFetch();
+    }, []);
 
     return (
         <div className='requests-container'>
@@ -116,9 +117,9 @@ export default function ApproveRequests() {
 
                 {requests.map((request) => (
                     <div key={request.id} className="request">
-                        {request.name}
-                        <h1>Email</h1>
-                        <p>Link</p>
+                        <h1>{request.title}</h1>
+                        {request.email}
+                        <p><a href={request.content_url}>Link</a></p>
 
                         <button onClick={() => handleApprove(request.doc_id)}>Approve</button>
                         <button className='reject' onClick={() => handleReject(request.doc_id)}>Reject</button>
