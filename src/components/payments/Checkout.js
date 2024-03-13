@@ -25,11 +25,11 @@ export default function Checkout() {
                 setBenefits(['twenty suggestions for each category', 'unlimited access to our collections', 'API access']);
             }
 
-            if(product === 'boost'){
+            if(product === 'boosting'){
                 boost_doc = query.get('doc');
                 Cookies.set('boost_doc', boost_doc);
-                setType('boost');
-                setAmount(5.00);
+                setType('boosting');
+                setAmount(10.00);
                 setBenefits(['Get exposure to your audience', 'Direct views to your content', 'Increase your audience']);
             }
         }, [product]);
