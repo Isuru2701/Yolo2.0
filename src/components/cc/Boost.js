@@ -8,28 +8,31 @@ export default function Boost() {
 
     const [title, setTitle] = useState("");
     const [link, setLink] = useState("");
-    const [goal, setGoal] = useState("");
+    const [keywords, setKeywords] = useState([]);
 
-    const handleSubmitBoost = () => {
-    
+    const handleSubmitBoost = (e) => {
+        e.preventDefault();
+
+        console.log(title, link, keywords);
+
         const response = fetch(`${process.env.REACT_APP_API_URL}/creators/boost`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({"email": Cookies.get("email"),"title": Title, "link": Link, "goal": goal})
+            body: JSON.stringify({ "email": Cookies.get("email"), "title": title, "content_url": link, "keywords": keywords })
         })
-        .then(response => response.json())
-        .then(data => {
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if (data.status == 200) {
+                    // window.location.href = '/creators/success';
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
            
-            console.log(data);
-            if(data['success'] == true){
-                window.location.href = "/creators/success";
-            }
-        })
-        .catch(error => {
-            console.error(error);
-        });
     }
 
 
@@ -38,9 +41,9 @@ export default function Boost() {
             <div className='cc-dashboard-container'>
                 <form onSubmit={handleSubmitBoost} style={{ margin: 50 }}>
                     <h1>Request a boost</h1>
-                    <br/>
-                    <br/>
-                    
+                    <br />
+                    <br />
+
 
                     <label>
                         Title
@@ -53,7 +56,7 @@ export default function Boost() {
                     <input type="url" value={link} onChange={e => setLink(e.target.value)} required />
 
                     <label>
-                        Any comments?
+                        tag your content with keywords
                     </label>
                     <textarea
                         style={{
@@ -70,7 +73,7 @@ export default function Boost() {
                             backgroundColor: 'var(--base-grey)',
                             color: 'var(--highlight-white)'
                         }}
-                        value={goal} onChange={e => setGoal(e.target.value)} required />
+                        value={keywords} onChange={e => setKeywords(e.target.value.split(','))} required />
 
                     <input type="submit" value="Submit" onClick={handleSubmitBoost} />
                 </form>

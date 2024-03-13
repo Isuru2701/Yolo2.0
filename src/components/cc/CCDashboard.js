@@ -58,7 +58,7 @@ export default function CCDashboard() {
                         {/* <button onClick={() => changeContent('spotify')} ><img src='spotify-icon.svg' /> Spotify</button>
                         <button onClick={() => changeContent('youtube')}><img src='youtube-icon.svg' /> Youtube</button> */}
                         <button onClick={() => window.location.href='/creators/boost'}><img src='boost-icon.svg' />Boost</button>
-                        <button className='stripe-button'><center><img src='stripe-icon.svg' /></center></button>
+                        {/* <button className='stripe-button'><center><img src='stripe-icon.svg' /></center></button> */}
                     </span>
                 </div>
 
