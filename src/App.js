@@ -455,7 +455,7 @@ function App() {
         <div className='buttons'>
           <InputLabel id="demo-simple-select-label" sx={{
             color: 'var(--tone-highlight)'
-          }}>Limit to</InputLabel>
+          }}></InputLabel>
           {/* <Select
             labelId="demo-simple-select-label"
             label='Limit'

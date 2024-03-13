@@ -115,7 +115,6 @@ export default function ApproveRequests() {
         doc.autoTable(tableColumn, tableRows, { startY: 30 }); // Adjust the startY value to leave space for the date
         doc.save("pending-requests-report.pdf");
     }
-    //TODO: after approving, turn the button text to approved and disable the button
 
     //load when component is mounted
     useEffect(() => {
@@ -142,7 +141,7 @@ export default function ApproveRequests() {
                         )}
                     </div>
                 ))}
-                
+
             </div>
         </div>
     );
