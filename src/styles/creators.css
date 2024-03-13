@@ -11,7 +11,7 @@
 .cc-header {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   padding: 1rem 2rem;
   width: 90%;
   background-color: var(--base-grey);
@@ -39,6 +39,8 @@
   border-radius: 5px;
   margin: 0.5rem;
   cursor: pointer;
+  width: 50%;
+  height:10vh;
 }
 
 .choice-button {

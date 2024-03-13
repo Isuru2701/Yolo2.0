@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import '../../styles/creators.css';
+import '../../styles/admin.css';
 import Cookies from "js-cookie";
 
 import CCSpotify from './CCSpotify';
@@ -7,41 +8,45 @@ import CCYoutube from './CCYoutube';
 import CCVerify from "../elements/CCVerify";
 
 import Task from "../elements/Task";
+import { Cookie } from "@mui/icons-material";
+
+
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 export default function CCDashboard() {
 
-    //switch content render based on button click
-    const [content, setContent] = React.useState('spotify');
 
-    const checkIsCC = async (event) => {
-        event.preventDefault(); // Prevent the form from refreshing the page
-
+    const [approvedBoosts, setApprovedBoosts] = useState([]);
+    const checkForApprovedBoosts = async () => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/admin/login`, {
-                method: "POST",
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/creators/approved?email=${Cookies.get('email')}`, {
+                method: "GET",
                 mode: "cors",
                 headers: {
                     "Access-Control-Allow-Origin": "*",
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ "email": Cookies.get("email") })
             });
 
             if (response.ok) {
-                Cookies.set('cc', true)
-                //redirect
-                window.location.href = "/admin/dashboard";
+                const data = await response.json();
+                console.log(data);
+                setApprovedBoosts(data);
+
             } else {
             }
         } catch (error) {
         }
 
-        console.log(`CC running with email: ${Cookies.get("email")}`);
-    };
-
-    function changeContent(content) {
-        setContent(content);
     }
 
+    const performPayment = async (docId) => {
+        
+    }
+
+    useEffect(() => {
+        checkForApprovedBoosts();
+    }, []);
 
 
     console.log(Cookies.get('user'));
@@ -57,14 +62,24 @@ export default function CCDashboard() {
                     <span>
                         {/* <button onClick={() => changeContent('spotify')} ><img src='spotify-icon.svg' /> Spotify</button>
                         <button onClick={() => changeContent('youtube')}><img src='youtube-icon.svg' /> Youtube</button> */}
-                        <button onClick={() => window.location.href='/creators/boost'}><img src='boost-icon.svg' />Boost</button>
+                        <button onClick={() => window.location.href = '/creators/boost'}><img src='boost-icon.svg' />Boost</button>
                         {/* <button className='stripe-button'><center><img src='stripe-icon.svg' /></center></button> */}
                     </span>
                 </div>
 
                 <br />
                 <div className='cc-content'>
-                    {content === 'spotify' ? <CCSpotify /> : <CCYoutube />}
+                    <h1>Approved requests payable</h1>
+                    <Carousel>
+                        {approvedBoosts.map((request, index) => (
+                            <div key={index}>
+                                <img src={request.image} alt={request.name} />
+                                <h2 className="legend">{request.title}</h2>
+                                <p className="legend"><a href={request.link}>Link</a></p>
+                                <button onClick={() => performPayment(request.doc_id)}>Perform payment</button>
+                            </div>
+                        ))}
+                    </Carousel>
                 </div>
 
                 <div className='boost-history'>
