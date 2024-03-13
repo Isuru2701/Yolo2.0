@@ -27,6 +27,11 @@ export default function Login() {
                 Cookies.set("email", email)// Update cookie or perform any other successful login action
                 Cookies.set("user", JSON.stringify(data));
                 console.log(Cookies.get('user'));
+
+                if (data['premium'] == true) {
+                    Cookies.set('premium', true);
+                }
+
                 /*
                 {
                     "agree": "",

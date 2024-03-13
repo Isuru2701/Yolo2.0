@@ -8,7 +8,7 @@ Chart.register(ArcElement, CategoryScale, Title, Tooltip);
 
 function ChartComponent({dataset = [12, 19, 3, 5, 2, 3]}) {
     const data = {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ["Used", "Available"],
         datasets: [{
             data: dataset,
             backgroundColor: [

@@ -25,7 +25,12 @@ function SuccessMessage() {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log(data);                
+                console.log(data);     
+                
+                //update the cookie
+                Cookies.set('premium', true);
+                
+
             } else {
                 setError("failed to upgrade");
             }

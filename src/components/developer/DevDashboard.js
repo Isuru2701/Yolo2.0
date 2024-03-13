@@ -14,6 +14,12 @@ export default function DevDashboard() {
     const [quota, setQuota] = useState(0);
 
     //TODO: first check if a user is premium. only then should they have permission to access the developer portal
+    if(!Cookies.get('email')){
+        window.location.href = '/login';
+    }
+    if(!Cookies.get('premium')){
+        window.location.href = '/checkout?t=premium';
+    }
 
     const handleUsage = async () => {
 
