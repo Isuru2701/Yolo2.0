@@ -16,8 +16,8 @@ function SuccessMessage() {
 
         //hit up /upgrade with the email
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/users/upgrade/${Cookies.get('email')}`, {
-                method: "POST",
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/users/upgrade/?email=${Cookies.get('email')}`, {
+                method: "GET",
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -25,11 +25,7 @@ function SuccessMessage() {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log(data);
-                if (data['success'] == true) {
-                    //redirect to success page
-                    window.location.href = '/success';
-                }
+                console.log(data);                
             } else {
                 setError("failed to upgrade");
             }

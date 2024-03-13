@@ -1,20 +1,44 @@
 import React from "react";
 import '../styles/profile.css';
 import { Grid } from "@mui/material";
-
+import Cookies from "js-cookie";
 
 export default function Profile() {
 
+
+    const handlePortal = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/payment/create-portal-session`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data);
+                if (data['success'] == true) {
+                    //redirect to success page
+                    window.location.href = '/success';
+                }
+            }
+        }
+        catch(error) {
+            console.log(error);
+        }
+          
+        }
 
     return (
         <>
             <div className="profile-container">
                 <div className="profile-header">
-                    <h1 style={{ color: 'white' }}>Profile</h1>
-                    <h2 style={{ color: 'white' }}>Hello username!</h2>
+                    <h1 style={{ color: 'white' }}>{Cookies.get('email')}</h1>
                     <br />
                     <span> {/*quick buttons */}
-                        <button className="quick-button">Stripe portal</button>
+                        {/* <button className="quick-button" onClick={handlePortal}>Stripe portal</button> */}
                         <button className="quick-button coffee">Buy us a coffee</button>
                     </span>
                 </div>
