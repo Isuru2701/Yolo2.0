@@ -28,7 +28,7 @@ function BoostSuccess() {
                     Success!
                 </Typography>
                 <Typography variant="subtitle1" component="p">
-                    You successfully enrolled as a creator. Keep cooking!
+                    Your action was successful. Keep cooking!
                 </Typography>
             </Box>
         </div>

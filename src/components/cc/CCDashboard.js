@@ -50,13 +50,13 @@ export default function CCDashboard() {
     return (
         <>
             <div className='cc-dashboard-container'>
-                {/* {!Cookies.get('cc') && <CCVerify />} */}
+                {!Cookies.get('user')['role'] == 'creator' && <CCVerify />}
                 <div className='cc-header'>
                     <h1>Content Creator Dashboard</h1>
                     <br />
                     <span>
-                        <button onClick={() => changeContent('spotify')} ><img src='spotify-icon.svg' /> Spotify</button>
-                        <button onClick={() => changeContent('youtube')}><img src='youtube-icon.svg' /> Youtube</button>
+                        {/* <button onClick={() => changeContent('spotify')} ><img src='spotify-icon.svg' /> Spotify</button>
+                        <button onClick={() => changeContent('youtube')}><img src='youtube-icon.svg' /> Youtube</button> */}
                         <button onClick={() => window.location.href='/creators/boost'}><img src='boost-icon.svg' />Boost</button>
                         <button className='stripe-button'><center><img src='stripe-icon.svg' /></center></button>
                     </span>
