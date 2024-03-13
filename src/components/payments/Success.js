@@ -10,13 +10,13 @@ function SuccessMessage() {
     const [amount, setAmount] = useState("");
     const [error, setError] = useState("");
 
-    const handleLedger = async (event) => {
-        event.preventDefault(); // Prevent the form from refreshing the page
+    const handleLedger = async () => {
+        
 
-
+        console.log(Cookies.get("email"));
         //hit up /upgrade with the email
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/users/upgrade/?email=${Cookies.get('email')}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/users/upgrade?email=${Cookies.get('email')}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
@@ -35,6 +35,8 @@ function SuccessMessage() {
         }
             
     };
+
+    handleLedger();
 
 
     return (
