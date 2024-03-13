@@ -61,7 +61,8 @@ export default function Register() {
         }
 
         if (!agree) {
-
+            setError('Please agree to the terms and conditions.');
+            return;
         }
 
         try {

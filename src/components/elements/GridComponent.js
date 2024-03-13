@@ -28,7 +28,7 @@ export function GridComponent({ media, type }) {
                         <Paper style={{ width: '100%', height: '100%', position: 'relative' }} onClick={() => handleOpen(item)}>
                             <img src={item.image_link} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                <h4 style={{ color: 'white', textAlign: 'center', margin: 0 }}>{index} {item.title}</h4>
+                                <h4 style={{ color: 'white', textAlign: 'center', margin: 0 }}>{item.title}</h4>
                             </div>
                         </Paper>
                     </Grid>

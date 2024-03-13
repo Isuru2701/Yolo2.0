@@ -167,7 +167,7 @@ function App() {
 
 
         const transformedData = data.slice(0, cap).map(item => ({
-          search_link: item.video_url,
+          search_link: item.song_url,
           image_link: item.thumbnail,
           title: item.title,
         }));
@@ -258,10 +258,11 @@ function App() {
         const transformedData = data.slice(0, cap).map(item => ({
           search_link: "https://www.themoviedb.org/tv/" + item.id,
           image_link: item.poster_path,
-          title: item.title,
+          title: item.name,
           overview: item.overview
         }));
         setTV(tv => [...tv, ...transformedData]);
+        console.log(tv);
 
 
 
@@ -360,6 +361,8 @@ function App() {
         }));
         setAnime(anime => [...anime, ...transformedData]);
 
+        console.log(anime);
+
 
 
 
@@ -450,7 +453,7 @@ function App() {
       <div className='text_area' id='chat' style={{ zIndex: 20 }}>
         <br />
         <h1 style={{ textAlign: 'left', color: 'white' }}>Whats on your mind?</h1>
-        <textarea id="prompt" rows="4" cols="50" onChange={(e) => setText(e.target.value)}></textarea>
+        <textarea id="prompt" rows="4" cols="50" onChange={(e) => setText(e.target.value)} placeholder='Let your heart out! The more descriptive you are, the better your suggestions will be'></textarea>
 
         <div className='buttons'>
           <InputLabel id="demo-simple-select-label" sx={{
@@ -474,7 +477,7 @@ function App() {
             <MenuItem value="Songs" className="menu-item" onChange={() => setLimit('songs')}>Songs</MenuItem>
             <MenuItem value="Books" className="menu-item" onChange={() => setLimit('books')}>Books</MenuItem>
           </Select> */}
-          <button className="landing-button submit" onClick={handleFetchKeywords}>Submit</button>
+          <button className="landing-button submit" onClick={handleFetchKeywords}>Suggest me what to watch!</button>
           {error && <p className='error-message'>{error}</p>}
 
 
