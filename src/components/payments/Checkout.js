@@ -12,6 +12,7 @@ export default function Checkout() {
     
     const query = new URLSearchParams(location.search);
     const product = query.get('t');
+    var boost_doc = "";
     console.log(product);
     const [amount, setAmount] = useState(0);
     const [benefits, setBenefits] = useState([])
@@ -23,9 +24,15 @@ export default function Checkout() {
                 setAmount(10.00);
                 setBenefits(['twenty suggestions for each category', 'unlimited access to our collections', 'API access']);
             }
+
+            if(product === 'boost'){
+                boost_doc = query.get('doc');
+                setType('boost');
+                setAmount(5.00);
+                setBenefits(['Get exposure to your audience', 'Direct views to your content', 'Increase your audience']);
+            }
         }, [product]);
 
-        // ... other code ...
 
     const handlePayment = async (event) => {
         event.preventDefault(); // Prevent the form from refreshing the page

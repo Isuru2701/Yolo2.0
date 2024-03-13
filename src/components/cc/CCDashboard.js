@@ -42,10 +42,6 @@ export default function CCDashboard() {
 
     }
 
-    const performPayment = async (docId) => {
-
-    }
-
     const checkForPaidBoosts = async () => {
         try {
             const response = await fetch(`${process.env.REACT_APP_API_URL}/creators/paid?email=${Cookies.get('email')}`, {
@@ -122,7 +118,7 @@ export default function CCDashboard() {
                                 <h2 style={{ marginBottom: '5px' }}>{request.title}</h2>
                                 <a href={request.content_url}>Link</a>
                                 <br/>
-                                <button onClick={() => performPayment(request.doc_id)} style={{backgroundColor: "var(--tone)", border: "none", borderRadius: "10px", padding: "10px", color:"var(--highlight-white)"}}>Perform payment</button>
+                                <button onClick={() => window.location.href=`/checkout?t=boost&doc=${request.doc_id}`} style={{backgroundColor: "var(--tone)", border: "none", borderRadius: "10px", padding: "10px", color:"var(--highlight-white)"}}>Perform payment</button>
                             </div>
                         ))}
                     </Carousel>
