@@ -12,7 +12,7 @@ import { Cookie } from "@mui/icons-material";
 
 
 import { Carousel } from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; 
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 export default function CCDashboard() {
 
 
@@ -41,7 +41,7 @@ export default function CCDashboard() {
     }
 
     const performPayment = async (docId) => {
-        
+
     }
 
     useEffect(() => {
@@ -68,18 +68,38 @@ export default function CCDashboard() {
                 </div>
 
                 <br />
-                <div className='cc-content'>
+                <div className='cc-content' style={{width:"70%"}}>
                     <h1>Approved requests payable</h1>
-                    <Carousel>
+                    <Carousel
+                        showArrows={true}
+                        showIndicators={false}
+                        showStatus={false}
+                        showThumbs={false}
+                        infiniteLoop={false}
+                        selectedItem={0}
+                        emulateTouch={true}
+                        dynamicHeight={false}
+                        autoPlay={true}
+                        interval={3000}
+                        stopOnHover={true}
+                        swipeable={true}
+                        transitionTime={500}
+                        centerMode={true}
+                        centerSlidePercentage={50}
+                        swipeScrollTolerance={5}
+                        className="carousel"
+                        style={{ width: '80%', margin: '0 auto' }}
+                    >
                         {approvedBoosts.map((request, index) => (
-                            <div key={index}>
-                                <img src={request.image} alt={request.name} />
-                                <h2 className="legend">{request.title}</h2>
-                                <p className="legend"><a href={request.link}>Link</a></p>
-                                <button onClick={() => performPayment(request.doc_id)}>Perform payment</button>
+                            <div key={index} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', backgroundColor: 'var(--base-grey)', borderRadius: 10, margin:10, padding:10}}>
+                                <img src="boost-icon.svg" alt={request.name} style={{ maxWidth: '100%', maxHeight: '50px', marginBottom: '10px' }} />
+                                <h2 style={{ marginBottom: '5px' }}>{request.title}</h2>
+                                <a href={request.content_url}>Link</a>
+                                <button onClick={() => performPayment(request.doc_id)} style={{backgroundColor: "var(--tone)", border: "none", borderRadius: "10px", padding: "10px"}}>Perform payment</button>
                             </div>
                         ))}
                     </Carousel>
+
                 </div>
 
                 <div className='boost-history'>
