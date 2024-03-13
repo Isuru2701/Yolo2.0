@@ -37,6 +37,9 @@ export default function Header() {
         if (Cookies.get('user')) {
             Cookies.remove('user');
         }
+        if(Cookies.get("email")) {
+            Cookies.remove("email");
+        }
 
 
     }
