@@ -27,6 +27,7 @@ export default function Checkout() {
 
             if(product === 'boost'){
                 boost_doc = query.get('doc');
+                Cookies.set('boost_doc', boost_doc);
                 setType('boost');
                 setAmount(5.00);
                 setBenefits(['Get exposure to your audience', 'Direct views to your content', 'Increase your audience']);

@@ -2,7 +2,36 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import { Check } from '@mui/icons-material';
 import { Typography } from '@mui/material';
+import Cookies from 'js-cookie';
 function BoostSuccess() {
+
+
+    //on payment sucess, get boost_doc from cookies and call the endpoints to update the boost status
+    const handlePaymentSuccess = async () => {
+        const boost_doc = Cookies.get('boost_doc');
+        console.log(boost_doc);
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/creators/approve_payment?doc=${boost_doc}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                // Successfully approved the boost request
+                console.log('Boost request approved successfully');
+            } else {
+                console.log('Failed to approve the boost request');
+            }
+
+            Cookies.remove('boost_doc');
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+
     return (
         <div
         style={{
