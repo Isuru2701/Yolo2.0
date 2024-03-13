@@ -95,7 +95,7 @@ export default function DevDashboard() {
                     <div className='col-container'>
                         <div className='api-token'>
                             <input id='tokenHolder' type="text" placeholder="API Token" value={token} readOnly={true}/>
-                            <button className='generate-btn' onClick={handleGenerateApiKey}>Generate New Token</button>
+                            {/* <button className='generate-btn' onClick={handleGenerateApiKey}>Generate New Token</button> */}
                             <button className="generate-btn"><Article />DOCS</button>
                             <button className='copy' onClick={handleCopyClick}><CopyAll /></button>
                         </div>
