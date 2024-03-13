@@ -13,10 +13,12 @@ import { Cookie } from "@mui/icons-material";
 
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Boost from "./Boost";
 export default function CCDashboard() {
 
 
     const [approvedBoosts, setApprovedBoosts] = useState([]);
+    const [paidBoosts, setPaidBoosts] = useState([]);
     const checkForApprovedBoosts = async () => {
         try {
             const response = await fetch(`${process.env.REACT_APP_API_URL}/creators/approved?email=${Cookies.get('email')}`, {
@@ -44,8 +46,32 @@ export default function CCDashboard() {
 
     }
 
+    const checkForPaidBoosts = async () => {
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/creators/paid?email=${Cookies.get('email')}`, {
+                method: "GET",
+                mode: "cors",
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Content-Type": "application/json"
+                },
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data);
+                setPaidBoosts(data);
+
+            } else {
+            }
+        } catch (error) {
+        }
+    
+    }
+
     useEffect(() => {
         checkForApprovedBoosts();
+        checkForPaidBoosts();
     }, []);
 
 
@@ -95,7 +121,8 @@ export default function CCDashboard() {
                                 <img src="boost-icon.svg" alt={request.name} style={{ maxWidth: '100%', maxHeight: '50px', marginBottom: '10px' }} />
                                 <h2 style={{ marginBottom: '5px' }}>{request.title}</h2>
                                 <a href={request.content_url}>Link</a>
-                                <button onClick={() => performPayment(request.doc_id)} style={{backgroundColor: "var(--tone)", border: "none", borderRadius: "10px", padding: "10px"}}>Perform payment</button>
+                                <br/>
+                                <button onClick={() => performPayment(request.doc_id)} style={{backgroundColor: "var(--tone)", border: "none", borderRadius: "10px", padding: "10px", color:"var(--highlight-white)"}}>Perform payment</button>
                             </div>
                         ))}
                     </Carousel>
@@ -103,13 +130,13 @@ export default function CCDashboard() {
                 </div>
 
                 <div className='boost-history'>
+                    <h1>Paid boosts</h1>
                     <div className='task-list'>
-                        <Task title='Boost 1' link='https://www.google.com' boost />
-                        <Task title='Boost 2' link='https://www.google.com' boost />
-                        <Task title='Boost 3' link='https://www.google.com' boost />
-                        <Task title='Boost 3' link='https://www.google.com' boost />
-                        <Task title='Boost 3' link='https://www.google.com' boost />
-                        <Task title='Boost 3' link='https://www.google.com' boost />
+                        {paidBoosts.map((boost) => 
+                        (
+                            <Task title={boost.title} link={boost.content_url} boost/>
+                        
+                        ))}
                     </div>
 
                 </div>
