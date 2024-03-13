@@ -25,7 +25,7 @@ export default function Login() {
             if (response.ok) {
                 const data = await response.json();
 
-                if (data["success"]) {
+                if (data["success"] !== false) {
                     Cookies.set("email", email)// Update cookie or perform any other successful login action
                     Cookies.set("user", JSON.stringify(data));
                     console.log(Cookies.get('user'));
@@ -61,7 +61,7 @@ export default function Login() {
                     setError("Invalid email or password. Please try again.");
                 }
             } else {
-                setError("Invalid email or password. Please try again.");
+                setError("Fetch failed");
             }
         } catch (error) {
             setError("An unknown error occurred. Please try again later.");
