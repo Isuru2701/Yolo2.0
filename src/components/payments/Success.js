@@ -7,35 +7,37 @@ import Cookies from 'js-cookie';
 
 
 function SuccessMessage() {
-    
-    const [email, setEmail] = useState("");
     const [amount, setAmount] = useState("");
     const [error, setError] = useState("");
 
     const handleLedger = async (event) => {
         event.preventDefault(); // Prevent the form from refreshing the page
 
+
+        //hit up /upgrade with the email
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/success`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/users/upgrade/${Cookies.get('email')}`, {
                 method: "POST",
-                mode: "cors",
                 headers: {
-                    "Access-Control-Allow-Origin": "*",
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ "email": email, "amount": 10})
             });
 
             if (response.ok) {
-                Cookies.set("email", email , "amount",amount )
-                
-            
+                const data = await response.json();
+                console.log(data);
+                if (data['success'] == true) {
+                    //redirect to success page
+                    window.location.href = '/success';
+                }
             } else {
-                setError("Invalid entry check payment details. Please try again.");
+                setError("failed to upgrade");
             }
-        } catch (error) {
-            setError("An unknown error occurred. Please try again later.");
         }
+        catch(error) {
+            console.log(error);
+        }
+            
     };
 
 

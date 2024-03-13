@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import '../../styles/checkout.css';
 import { useLocation } from "react-router";
+import Cookies from "js-cookie";
 
 export default function Checkout() {
     
@@ -19,7 +20,7 @@ export default function Checkout() {
         useEffect(() => {
             if(product === 'premium'){
                 setType('premium');
-                setAmount(9.99);
+                setAmount(10.00);
                 setBenefits(['twenty suggestions for each category', 'unlimited access to our collections', 'API access']);
             }
         }, [product]);
@@ -29,6 +30,14 @@ export default function Checkout() {
     const handlePayment = async (event) => {
         event.preventDefault(); // Prevent the form from refreshing the page
         console.log("Payment button clicked");
+
+        if(!Cookies.get('email')) {
+            window.location.href = '/login';
+        }
+        if (Cookies.get('user')['premium'] == true) {
+            window.location.href = '/profile';
+        }
+
         //fetch payment
         try {
             const response = await fetch(`${process.env.REACT_APP_API_URL}/payment/create-checkout-session`, {
