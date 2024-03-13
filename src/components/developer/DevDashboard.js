@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Chart from '../elements/Chart';
 
 import '../../styles/developer.css';
@@ -10,6 +10,7 @@ export default function DevDashboard() {
 
     const [error, setError] = useState(false);
 
+    const [token, setToken] = useState("");
     const [usage, setUsage] = useState(0);
     const [quota, setQuota] = useState(0);
 
@@ -21,7 +22,7 @@ export default function DevDashboard() {
         window.location.href = '/checkout?t=premium';
     }
 
-    const handleUsage = async () => {
+    const handleFetchDevInfo = async () => {
 
         try {
             const response = await fetch(`${process.env.REACT_APP_API_URL}/developers/usage?email=${Cookies.get("email")}`, {
@@ -33,6 +34,8 @@ export default function DevDashboard() {
 
             if (response.ok) {
                 const data = await response.json();
+                console.log(data);
+                setToken(data.token)
                 setUsage(data.req_count);
                 setQuota(data.total_usage);
             } else {
@@ -45,14 +48,11 @@ export default function DevDashboard() {
 
     const handleGenerateApiKey = async () => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/developers/generate-api-key`, {
-                method: "POST",
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/developers/generate?email=${Cookies.get('email')}`, {
+                method: "GET",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({
-                    email: Cookies.get("email")
-                })
             });
 
             if (response.ok) {
@@ -65,7 +65,18 @@ export default function DevDashboard() {
         }
     };
 
-    handleUsage();
+
+    useEffect(() => {
+        handleFetchDevInfo();
+    }, []);
+    const handleCopyClick = async () => {
+        try {
+          await navigator.clipboard.writeText(token);
+          console.log('API token copied to clipboard');
+        } catch (err) {
+          console.log('Failed to copy API token: ', err);
+        }
+      };
 
     return (
         <>
@@ -83,10 +94,10 @@ export default function DevDashboard() {
 
                     <div className='col-container'>
                         <div className='api-token'>
-                            <input type="text" placeholder="API Token" />
-                            <button className='generate-btn' onClick={handleGenerateApiKey}>Generate New Token</button>  #add event listnerzz
+                            <input id='tokenHolder' type="text" placeholder="API Token" value={token} readOnly={true}/>
+                            <button className='generate-btn' onClick={handleGenerateApiKey}>Generate New Token</button>
                             <button className="generate-btn"><Article />DOCS</button>
-                            <button className='copy'><CopyAll /></button>
+                            <button className='copy' onClick={handleCopyClick}><CopyAll /></button>
                         </div>
 
                         <br></br>
