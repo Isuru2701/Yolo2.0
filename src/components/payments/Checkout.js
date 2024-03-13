@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import '../../styles/checkout.css';
 import { useLocation } from "react-router";
 
@@ -12,6 +12,19 @@ export default function Checkout() {
     const query = new URLSearchParams(location.search);
     const product = query.get('t');
     console.log(product);
+    const [amount, setAmount] = useState(0);
+    const [benefits, setBenefits] = useState([])
+
+
+        useEffect(() => {
+            if(product === 'premium'){
+                setType('premium');
+                setAmount(9.99);
+                setBenefits(['twenty suggestions for each category', 'unlimited access to our collections', 'API access']);
+            }
+        }, [product]);
+
+        // ... other code ...
 
     const handlePayment = async (event) => {
         event.preventDefault(); // Prevent the form from refreshing the page
@@ -50,15 +63,14 @@ export default function Checkout() {
             <div className='item-info-container'>
                 <div className='item-info'>
                     <div classname='product-title'>
-                        <h1>TITLE</h1>
+                        <h1>{type}</h1>
                         <hr/>
                     </div>
                     <div classname='product-benefits'>
                         <ul>
-                            <li>benefit</li>
-                            <li>benefit</li>
-                            <li>benefit</li>
-                            <li>benefit</li>
+                            {benefits.map((benefit, index) => (
+                                <li key={index}>{benefit}</li>
+                            ))}
                         </ul>
                     </div>
                     
@@ -67,7 +79,7 @@ export default function Checkout() {
 
             </div>
             <div className='amt-info'>
-                <h1 className='amt'>$AMT</h1>
+                <h1 className='amt'>${amount}</h1>
                 <hr style={{color: 'black'}}/>
             
                 <button  onClick= {handlePayment} className='checkout-btn'>Checkout With Stripe</button>

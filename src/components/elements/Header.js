@@ -65,7 +65,7 @@ export default function Header() {
                     {!Cookies.get('email') && <MenuItem icon={<LoginOutlined />} href='/login'>Login</MenuItem>}
                     {!Cookies.get('email') && <MenuItem icon={<Person2Outlined />} href='/register'>Register</MenuItem>}
                     {Cookies.get('email') && !Cookies.get('admin') && <MenuItem icon={<VerifiedUserOutlined />} href='/profile'>Profile</MenuItem>}
-                    {!Cookies.get('admin') && <MenuItem icon={<WorkspacePremiumOutlined />} href='/checkout?t=Premium'>Premium</MenuItem>}
+                    {!Cookies.get('admin') && <MenuItem icon={<WorkspacePremiumOutlined />} href='/checkout?t=premium'>Premium</MenuItem>}
                     {Cookies.get('admin') && <MenuItem icon={<AdminPanelSettings />} href='/admin/dashboard'>Admin</MenuItem>}
                     {!Cookies.get('admin') && <MenuItem icon={<MovieCreationRounded />} href='/creators'>Creators</MenuItem>}
                     {!Cookies.get('admin') && <MenuItem icon={<LogoDev />} href='/developers'>Developers</MenuItem>}
