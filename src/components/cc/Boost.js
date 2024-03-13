@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import '../../styles/creators.css';
 import { Title } from "@mui/icons-material";
 import { Link } from "react-router-dom";
@@ -8,6 +8,7 @@ export default function Boost() {
 
     const [title, setTitle] = useState("");
     const [link, setLink] = useState("");
+    const [suggestions, setSuggestions] = useState([])
     const [keywords, setKeywords] = useState([]);
 
     const handleSubmitBoost = (e) => {
@@ -34,6 +35,38 @@ export default function Boost() {
             });
            
     }
+
+    const getkeywords = async () => {
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/keywords`, {
+                method: "GET",
+                mode: "cors",
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Content-Type": "application/json"
+                },
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data);
+                setSuggestions(prevSuggestions => {
+                    console.log("Previous suggestions:", prevSuggestions);
+                    return data;
+                });
+
+            } else {
+
+            }
+        } catch (error) {
+        }
+    }
+
+    useEffect(() => {
+        //fetch keywords
+        getkeywords();
+    }
+        , []);
 
 
     return (
@@ -73,7 +106,13 @@ export default function Boost() {
                             backgroundColor: 'var(--base-grey)',
                             color: 'var(--highlight-white)'
                         }}
-                        value={keywords} onChange={e => setKeywords(e.target.value.split(','))} required />
+                        value={keywords} onChange={e => setKeywords(e.target.value.split(','))} required >
+                             <datalist id="suggestions">
+                            {suggestions.map((keyword, index) => (
+                                <option key={index} value={keyword} />
+                            ))}
+                        </datalist>
+                        </textarea>
 
                     <input type="submit" value="Submit" onClick={handleSubmitBoost} />
                 </form>

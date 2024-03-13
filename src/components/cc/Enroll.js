@@ -38,6 +38,7 @@ export default function Enroll() {
                 user.link = link;
                 user.business_email = email;
                 user.description = goal;
+                user.role = "creator";
 
                 // Stringify the user object and store it back in the cookie
                 Cookies.set('user', JSON.stringify(user));

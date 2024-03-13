@@ -72,12 +72,14 @@ export default function CCDashboard() {
 
 
     console.log(Cookies.get('user'));
+    console.log("this thing " + JSON.parse(Cookies.get('user'))['role']+ "+"  +JSON.parse(Cookies.get('user'))['role'] == 'creator');
 
     //load previous boosts (history) here too. include views.
     return (
         <>
             <div className='cc-dashboard-container'>
-                {!Cookies.get('user')['role'] == 'creator' && <CCVerify />}
+                
+                {JSON.parse(Cookies.get('user'))['role'] !== 'creator' && <CCVerify />}
                 <div className='cc-header'>
                     <h1>Content Creator Dashboard</h1>
                     <br />
