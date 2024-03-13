@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import '../../styles/creators.css';
 import { Title } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 export default function Boost() {
 
 
@@ -16,14 +17,14 @@ export default function Boost() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({"title": Title, "link": Link, "goal": goal})
+            body: JSON.stringify({"email": Cookies.get("email"),"title": Title, "link": Link, "goal": goal})
         })
         .then(response => response.json())
         .then(data => {
            
             console.log(data);
             if(data['success'] == true){
-                window.location.href = "/success";
+                window.location.href = "/creators/success";
             }
         })
         .catch(error => {

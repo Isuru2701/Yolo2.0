@@ -19,6 +19,7 @@ import Checkout from './components/payments/Checkout';
 
 import Boost from './components/cc/Boost';
 import CCDashboard from './components/cc/CCDashboard';
+import BoostSuccess from './components/cc/BoostSuccess';
 
 import Profile from './components/Profile';
 import Preferences from './components/Preferences';
@@ -56,6 +57,7 @@ root.render(
           <Route path='/creators' element={<CCDashboard />} />
           <Route path='/creators/boost' element={<Boost />} />
           <Route path='creators/enroll' element={<Enroll />} />
+          <Route path='/creators/success' element={<BoostSuccess />} />
 
           <Route path='/profile' element={<Profile />} />
           <Route path='/preferences' element={<Preferences />} />
