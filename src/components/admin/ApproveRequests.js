@@ -8,20 +8,14 @@ export default function ApproveRequests() {
     // This is a placeholder. Replace it with actual data.
 
     const [error, setError] = useState("");
-
+    const [requests, setRequests] = useState([]);
     //replace in handleFetch
-    var requests = [
-        { id: 1, name: 'Request 1', email: 'email1', link: 'link1', comments: 'comments1' },
-        { id: 2, name: 'Request 2', email: 'email2', link: 'link2', comments: 'comments2' },
-        { id: 3, name: 'Request 3', email: 'email3', link: 'link3', comments: 'comments3' },
-        { id: 4, name: 'Request 4', email: 'email4', link: 'link4', comments: 'comments4' },
-        { id: 5, name: 'Request 5', email: 'email5', link: 'link5', comments: 'comments5' },
+    
 
-    ];
     //load all requests from backend
     const handleFetch = async () => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/pending`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/creators/pending`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
@@ -32,7 +26,9 @@ export default function ApproveRequests() {
                 const data = await response.json();
                 requests = data;
                 console.log(requests);
-                //TODO
+                setRequests(requests);
+                
+                
 
             } else {
                 setError("failed to fetch usage data");
@@ -43,21 +39,60 @@ export default function ApproveRequests() {
     }
 
     //approve a request 
-    const handleApprove = async () => {
+    const handleApprove = async (docId) => {
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/creators/approve?doc=${docId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+    
+            if (response.ok) {
+                // Successfully approved the boost request
+                // Optionally, you can update the UI to reflect the approval
+                console.log('Boost request approved successfully');
+            } else {
+                // Handle error response from the backend
+                console.error('Failed to approve boost request');
+            }
+        } catch (error) {
+            // Handle network or other errors
+            console.error('Error:', error);
+        }
     }
-
     //reject a request
-    const handleReject = async () => {
+    const handleReject = async (docId) => {
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/creators/reject?doc=${docId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+    
+            if (response.ok) {
+                // Successfully rejected the boost request
+                // Optionally, you can update the UI to reflect the rejection
+                console.log('Boost request rejected successfully');
+            } else {
+                // Handle error response from the backend
+                console.error('Failed to reject boost request');
+            }
+        } catch (error) {
+            // Handle network or other errors
+            console.error('Error:', error);
+        }
     }
 
     const generateReport = () => {
         const doc = new jsPDF();
 
-        const tableColumn = ["ID", "Name", "Email", "Link", "Comments"];
+        const tableColumn = [ "Link", "Email", "Keywords", "Title" ];
         const tableRows = [];
 
         requests.forEach(request => {
-            const reportData = [request.id, request.name, request.email, request.link, request.comments];
+            const reportData = [request.title, request.email, request.keywords, request.content_url];
             tableRows.push(reportData);
         });
         const date = new Date();
@@ -70,9 +105,6 @@ export default function ApproveRequests() {
         doc.save("pending-requests-report.pdf");
     }
     //TODO: after approving, turn the button text to approved and disable the button
-
-
-
 
     //load when component is mounted
     handleFetch();
@@ -87,10 +119,9 @@ export default function ApproveRequests() {
                         {request.name}
                         <h1>Email</h1>
                         <p>Link</p>
-                        <p>Description</p>
 
-                        <button onClick={handleApprove}>Approve</button>
-                        <button className='reject' onClick={handleReject}>Reject</button>
+                        <button onClick={() => handleApprove(request.doc_id)}>Approve</button>
+                        <button className='reject' onClick={() => handleReject(request.doc_id)}>Reject</button>
                     </div>
                 ))}
             </div>
