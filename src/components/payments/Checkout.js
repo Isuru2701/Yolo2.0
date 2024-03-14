@@ -60,6 +60,7 @@ export default function Checkout() {
 
             if (response.ok) {
                 const data = await response.json();
+                Cookies.set('premium', true);
                 console.log(data)
                 if(data['success'] == true){
                         window.open(data.url, "_blank");

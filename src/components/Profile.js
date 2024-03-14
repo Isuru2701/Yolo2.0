@@ -3,6 +3,7 @@ import '../styles/profile.css';
 import { Grid } from "@mui/material";
 import Cookies from "js-cookie";
 
+
 export default function Profile() {
 
 
@@ -36,6 +37,7 @@ export default function Profile() {
             <div className="profile-container">
                 <div className="profile-header">
                     <h1 style={{ color: 'white' }}>{Cookies.get('email')}</h1>
+                    {Cookies.get('premium') == 'true' ? <h2 style={{ color: 'white' }}>Premium</h2> : <h2 style={{ color: 'white' }}>Free</h2>}
                     <br />
                     <span> {/*quick buttons */}
                         {/* <button className="quick-button" onClick={handlePortal}>Stripe portal</button> */}
